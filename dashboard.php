@@ -9,8 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SecureVault - Password Manager Dashboard</title>
     <!-- Bootstrap Icons -->
-    <link rel="stylesheet"
-        href="assets/node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="assets/node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
     <!-- Animate.css (optional for animations) -->
     <link rel="stylesheet" href="assets/node_modules/animate.css/animate.min.css">
     <!-- Notify.js CSS -->
@@ -58,15 +57,19 @@
 
                 <div class="password-grid" style="display: <?php echo $displayOption === 0 ? 'grid' : 'none'; ?>;">
                     <?php
-                    $sql = "SELECT p.id, p.website_name, p.username, p.password, p.website_url, p.folder, p.icon_image, p.icon_file_name, p.date_created, f.folder_name
-                              FROM tbl_save_passwords p
-                              LEFT JOIN tbl_folder f ON p.folder = f.folder_id";
+                    // Fetch and sort password items by website_name
+                    $sql = "SELECT p.id, p.website_name, p.username, p.password, p.website_url, p.folder, p.icon_image, 
+                                    p.icon_file_name, p.date_created, f.folder_name
+                            FROM tbl_save_passwords p
+                            LEFT JOIN tbl_folder f ON p.folder = f.folder_id
+                            ORDER BY p.website_name"; // Sort by website_name
+
                     $stmt = $conn->prepare($sql);
                     $stmt->execute();
                     $passwords = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     foreach ($passwords as $row) {
-                        ?>
+                    ?>
                         <div class="password-card" data-id="<?php echo htmlspecialchars($row['id']); ?>">
                             <div class="card-header">
                                 <div class="password-icon">
@@ -116,8 +119,7 @@
                                 <div class="detail-item">
                                     <div class="detail-label">Password:</div>
                                     <div class="detail-value">
-                                        <div class="password-field"
-                                            data-password="<?php echo htmlspecialchars($row['password']); ?>">
+                                        <div class="password-field" data-password="<?php echo htmlspecialchars($row['password']); ?>">
                                             <span class="password-dots">••••••••••••</span>
                                             <button class="copy-btn">
                                                 <i class="bi bi-copy"></i>
@@ -131,7 +133,7 @@
                                 </div>
                             </div>
                             <div class="card-actions">
-                            <button class="action-btn" title="Eye">
+                                <button class="action-btn" title="Eye">
                                     <i class="bi bi-eye"></i>
                                 </button>
                                 <button class="action-btn" title="Edit">
@@ -220,3 +222,5 @@
 </body>
 
 </html>
+```
+

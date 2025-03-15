@@ -605,27 +605,33 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
-                    const passwords = data.passwords;
+                    let passwords = data.passwords;
+    
+                    // Sort passwords alphabetically by website name
+                    passwords.sort((a, b) => {
+                        return a.website_name.localeCompare(b.website_name);
+                    });
+    
                     const passwordGrid = document.querySelector('.password-grid');
                     const passwordList = document.querySelector('.password-list');
-
-                    console.log('Fetched passwords: ', passwords); // Debug: Check the fetched data
-
+    
+                    console.log('Fetched and sorted passwords: ', passwords); // Debug: Check the fetched and sorted data
+    
                     // Clear existing items to prevent duplicates
                     passwordGrid.innerHTML = '';
                     passwordList.innerHTML = '';
-
-                    // Populate grid and list views with updated data
+    
+                    // Populate grid and list views with sorted data
                     passwords.forEach(row => {
                         console.log('Processing row: ', row); // Debug: Check each loop iteration
-
+    
                         const passwordCard = createPasswordCard(row);
                         const passwordListItem = createPasswordListItem(row);
-
+    
                         passwordGrid.appendChild(passwordCard);
                         passwordList.appendChild(passwordListItem);
                     });
-
+    
                     // Re-setup event handlers for all functionalities
                     setupListItemClickHandlers();
                     setupEyeButtonClickHandlers();
