@@ -10,11 +10,11 @@
             <form id="passwordForm" enctype="multipart/form-data" method="POST">
 
                 <div class="form-group">
-                    <label for="websiteName">Website Name</label>
-                    <input type="text" id="websiteName" name="websiteName" placeholder="Enter website name" required>
+                    <label for="websiteName">Platform Name</label>
+                    <input type="text" id="websiteName" name="websiteName" placeholder="Enter Platform Name" required>
                 </div>
                 <div class="form-group">
-                    <label for="username">Username / Email</label>
+                    <label for="username">Username / Email / Number / Any</label>
                     <input type="text" id="username" name="username" placeholder="Enter username or email" required>
                 </div>
                 <div class="form-group">
@@ -27,8 +27,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="websiteUrl">Website URL</label>
-                    <input type="text" id="websiteUrl" name="websiteUrl" placeholder="Enter website URL">
+                    <label for="websiteUrl">Platform URL</label>
+                    <input type="text" id="websiteUrl" name="websiteUrl" placeholder="Enter Platform URL">
                 </div>
                 <div class="form-group">
                     <label for="folder">Folder</label>
@@ -73,8 +73,8 @@
         <div class="modal-body">
             <form id="editPasswordForm" enctype="multipart/form-data" method="POST">
                 <div class="form-group">
-                    <label for="editWebsiteName">Website Name</label>
-                    <input type="text" id="editWebsiteName" name="editWebsiteName" placeholder="Enter website name"
+                    <label for="editWebsiteName">Platform Name</label>
+                    <input type="text" id="editWebsiteName" name="editWebsiteName" placeholder="Enter Platform Name"
                         required>
                 </div>
                 <div class="form-group">
@@ -87,14 +87,12 @@
                     <div class="password-input-container">
                         <input type="password" id="editPassword" name="editPassword" placeholder="Enter password"
                             required>
-                        <button type="button" class="toggle-password">
-                            <i class="bi bi-eye"></i>
-                        </button>
+                      
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="editWebsiteUrl">Website URL</label>
-                    <input type="text" id="editWebsiteUrl" name="editWebsiteUrl" placeholder="Enter website URL">
+                    <label for="editWebsiteUrl">Platform URL</label>
+                    <input type="text" id="editWebsiteUrl" name="editWebsiteUrl" placeholder="Enter Platform URL">
                 </div>
                 <div class="form-group">
                     <label for="editFolder">Folder</label>

@@ -39,7 +39,7 @@
                         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
                         $displayOption = $result['option'] ?? 0; // Default to grid view if not set
-
+                        
                         // Determine which button should be active
                         $gridActiveClass = $displayOption === 0 ? 'active' : '';
                         $listActiveClass = $displayOption === 1 ? 'active' : '';
@@ -63,13 +63,13 @@
                             FROM tbl_save_passwords p
                             LEFT JOIN tbl_folder f ON p.folder = f.folder_id
                             ORDER BY p.website_name"; // Sort by website_name
-
+                    
                     $stmt = $conn->prepare($sql);
                     $stmt->execute();
                     $passwords = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     foreach ($passwords as $row) {
-                    ?>
+                        ?>
                         <div class="password-card" data-id="<?php echo htmlspecialchars($row['id']); ?>">
                             <div class="card-header">
                                 <div class="password-icon">
@@ -114,12 +114,18 @@
                             <div class="password-details">
                                 <div class="detail-item">
                                     <div class="detail-label">Username:</div>
-                                    <div class="detail-value"><?php echo htmlspecialchars($row['username']); ?></div>
+                                    <div class="detail-value">
+                                        <div class="username-field"
+                                            data-username="<?php echo htmlspecialchars($row['username']); ?>">
+                                            <span class="username-dots">••••••••</span>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="detail-item">
                                     <div class="detail-label">Password:</div>
                                     <div class="detail-value">
-                                        <div class="password-field" data-password="<?php echo htmlspecialchars($row['password']); ?>">
+                                        <div class="password-field"
+                                            data-password="<?php echo htmlspecialchars($row['password']); ?>">
                                             <span class="password-dots">••••••••••••</span>
                                             <button class="copy-btn">
                                                 <i class="bi bi-copy"></i>
@@ -212,13 +218,13 @@
         &copy; 2025 SecureVault Password Manager. All rights reserved.
     </footer>
 
-    <script src="assets/node_modules/jquery/js/jquery-3.6.0.min.js"></script>
+    
+</body>
+<script src="assets/node_modules/jquery/js/jquery-3.6.0.min.js"></script>
     <!-- Notify.js -->
     <script src="assets/node_modules/notify/css/js/notify.min.js"></script>
     <!-- Custom Script -->
     <script type="module" src="assets/script.js"></script>
     <script type="module" src="assets/aside.js"></script>
     <script src="assets/notificationManager.js"></script>
-</body>
-
 </html>

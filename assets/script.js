@@ -7,6 +7,23 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     /*============ Mobile Menu Toggle End Here ============*/
 
+     /* ============ Username Reveal Functionality Start Here ============ */
+     document.querySelectorAll('.username-field').forEach(field => {
+        field.addEventListener('click', function () {
+            const dots = field.querySelector('.username-dots');
+            const actualUsername = field.getAttribute('data-username');
+
+            if (dots.textContent.includes('•')) {
+                dots.textContent = actualUsername; // Show the full username
+                setTimeout(() => {
+                    dots.textContent = "••••••••"; // Revert to ellipsis after 3 seconds
+                }, 3000);
+            }
+        });
+    });
+    /* ============ Username Reveal Functionality End Here ============ */
+    
+
     /*============ Close Sidebar on Outside Click Start Here ============*/
     document.addEventListener('click', function (event) {
         const sidebar = document.querySelector('.sidebar');
@@ -999,3 +1016,6 @@ document.addEventListener('DOMContentLoaded', function () {
         setupFavoritesButtonClickHandlers();
     });
 });
+
+
+
