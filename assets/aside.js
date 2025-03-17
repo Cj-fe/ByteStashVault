@@ -271,6 +271,10 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     });
 
+    /*============ Delete Folder Modal Functionality End Here ============*/
+
+
+    
     /*============ Refresh Folder List Automatically ============*/
     function refreshFolderList() {
         const categories = document.querySelectorAll('.categories');
@@ -325,4 +329,55 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Initialize the initial folder list
     refreshFolderList();
+});
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const favoritesButton = document.querySelector('#favorites-button');
+
+    if (favoritesButton) {
+        favoritesButton.addEventListener('click', function () {
+            fetch('get_favorites.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        displayFavoritePasswords(data.favorites);
+                    } else {
+                        console.error(data.message);
+                        alert('Unable to fetch favorites.');
+                    }
+                })
+                .catch(error => console.error('Error fetching favorites:', error));
+        });
+    }
+
+    function displayFavoritePasswords(passwords) {
+        // Grab the container that holds password cards
+        const passwordContainer = document.querySelector('.password-grid');
+        passwordContainer.innerHTML = ''; // Clear out existing DOM contents
+
+        passwords.forEach(function (password) {
+            const passwordCard = createPasswordCard(password);
+            passwordContainer.appendChild(passwordCard);
+        });
+    }
+
+    function createPasswordCard(password) {
+        const card = document.createElement('div');
+        card.className = 'password-card';
+        card.dataset.id = password.id;
+
+        card.innerHTML = `
+            <div class="card-header">
+                <div class="password-icon">
+                    <i class="bi bi-${password.icon_file_name}"></i>
+                </div>
+                <!-- Additional HTML for the card's header -->
+            </div>
+            <!-- Rest of the card's HTML -->
+        `;
+
+        return card;
+    }
 });
