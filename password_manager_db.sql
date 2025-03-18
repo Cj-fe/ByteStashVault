@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2025 at 12:11 PM
+-- Generation Time: Mar 18, 2025 at 04:29 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -37,7 +37,7 @@ CREATE TABLE `display_option` (
 --
 
 INSERT INTO `display_option` (`id`, `option`) VALUES
-('d451fd0d04c62ea543de70d48fc436c83e998995c6d85fb2ccedc6b8a0febce4/27160c038fd64bcb2e4533f224b55c3933ceb2d9d244f8536585355e993d66b1', 1);
+('d451fd0d04c62ea543de70d48fc436c83e998995c6d85fb2ccedc6b8a0febce4/27160c038fd64bcb2e4533f224b55c3933ceb2d9d244f8536585355e993d66b1', 0);
 
 -- --------------------------------------------------------
 
@@ -65,7 +65,7 @@ CREATE TABLE `tbl_account` (
 --
 
 INSERT INTO `tbl_account` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `role`, `is_active`, `created_at`, `last_login`, `access_level`, `phone`) VALUES
-('e71736c971c3451ae162fb330fada675b20a0b6b5f2091263f9f810613a0d3f7/09be13863632c8b3810c5bb1444ac1a9502', 'cj2003', '$2y$10$odSj8lN143Z7UKnw3cF4Pul45YA5LPRkbmsBvxTPbFNOlLJGFlZjW', 'johnchristianfariola@gmail.com', 'John Christian', 'Larayos', 'admin', 1, '2025-03-08 11:13:37', '2025-03-11 13:38:10', 5, '0909643776');
+('e71736c971c3451ae162fb330fada675b20a0b6b5f2091263f9f810613a0d3f7/09be13863632c8b3810c5bb1444ac1a9502', 'cj2003', '$2y$10$odSj8lN143Z7UKnw3cF4Pul45YA5LPRkbmsBvxTPbFNOlLJGFlZjW', 'johnchristianfariola@gmail.com', 'John Christian', 'Larayos', 'admin', 1, '2025-03-08 11:13:37', '2025-03-17 21:09:13', 5, '0909643776');
 
 -- --------------------------------------------------------
 
@@ -85,6 +85,7 @@ CREATE TABLE `tbl_favorites` (
 --
 
 INSERT INTO `tbl_favorites` (`id`, `password_id`, `created_at`, `updated_at`) VALUES
+('0077b7737c7cdf162a0cec3fff9ed0d00360007d3e8e53f71c2404d3c3b50484', '6a938e48-0187-11f0-8cdb-088fc3566126', '2025-03-17', '2025-03-17'),
 ('05ba50c6241c57b60dc0cf7f503e86c7514a18ff400b24aebd0c057295dc5112', 'd1f0ced1-fcf8-11ef-a3a3-088fc3566126', '2025-03-15', '2025-03-15');
 
 -- --------------------------------------------------------
@@ -105,7 +106,7 @@ CREATE TABLE `tbl_folder` (
 --
 
 INSERT INTO `tbl_folder` (`folder_id`, `folder_name`, `created_date`, `modified_date`) VALUES
-('7ae8d5a1-0186-11f0-8cdb-088fc3566126', 'Social', '2025-03-15 18:15:54', '2025-03-15 18:15:54'),
+('7ae8d5a1-0186-11f0-8cdb-088fc3566126', 'Social', '2025-03-15 18:15:54', '2025-03-16 08:53:48'),
 ('85c70d17-0186-11f0-8cdb-088fc3566126', 'Email', '2025-03-15 18:16:12', '2025-03-15 18:16:12'),
 ('8edfce30-0186-11f0-8cdb-088fc3566126', 'Work Tools', '2025-03-15 18:16:28', '2025-03-15 18:16:28'),
 ('93080c0a-0186-11f0-8cdb-088fc3566126', 'Media', '2025-03-15 18:16:35', '2025-03-15 18:16:35'),
@@ -138,18 +139,20 @@ CREATE TABLE `tbl_save_passwords` (
 --
 
 INSERT INTO `tbl_save_passwords` (`id`, `website_name`, `username`, `password`, `website_url`, `notes`, `folder`, `icon_image`, `icon_file_name`, `date_created`, `date_modified`, `icon_option`) VALUES
-('15fb083c-018b-11f0-8cdb-088fc3566126', 'Github', 'us1071591@gmail.com', 'kYWV7GFBh$1w ', 'https://github.com/', '', '8edfce30-0186-11f0-8cdb-088fc3566126', NULL, 'github', '2025-03-15 10:48:52', '2025-03-15 10:48:52', 2),
+('15fb083c-018b-11f0-8cdb-088fc3566126', 'Github', 'us1071591@gmail.com', 'kYWV7GFBh$1w', 'https://github.com/', 'Recovery Email:\r\n639950367559\r\n johnchristianfariola@gmail.com \r\n\r\nMessenger Pin:\r\n200329\r\n', '8edfce30-0186-11f0-8cdb-088fc3566126', NULL, 'github', '2025-03-15 10:48:52', '2025-03-16 03:59:09', 2),
 ('2296b69c-018c-11f0-8cdb-088fc3566126', 'UnSplash', 'johnchristianfariola@gmail.com', '6Pg@rqLi2@2JJ!w', 'https://unsplash.com/', '', '93080c0a-0186-11f0-8cdb-088fc3566126', NULL, 'image-alt', '2025-03-15 10:56:23', '2025-03-15 10:56:23', 2),
 ('246611de-018d-11f0-8cdb-088fc3566126', 'Maya', '+639950367559', 'johnchristian@2003', 'https://play.google.com/store/search?q=Maya&c=apps&hl=en', 'ATM PIN: 032920', '97afde94-0186-11f0-8cdb-088fc3566126', NULL, 'android', '2025-03-15 11:03:35', '2025-03-15 11:03:56', 2),
-('27a46f11-018e-11f0-8cdb-088fc3566126', 'Wifi', 'Yumis_Wifi', 'NNGgtzng%9', '', '', '9e0f71a1-0186-11f0-8cdb-088fc3566126', NULL, 'wifi', '2025-03-15 11:10:50', '2025-03-15 11:10:56', 2),
+('27a46f11-018e-11f0-8cdb-088fc3566126', 'Wifi', 'Yumis_Wifi', 'NNGgtzng%9', 'N/A', '', '9e0f71a1-0186-11f0-8cdb-088fc3566126', NULL, 'wifi', '2025-03-15 11:10:50', '2025-03-17 13:10:07', 2),
 ('30177b78-018b-11f0-8cdb-088fc3566126', 'Github', 'johnchristianfariola@gmail.com', 'Code@2025!Hub ', 'https://github.com/', '', '8edfce30-0186-11f0-8cdb-088fc3566126', NULL, 'github', '2025-03-15 10:49:36', '2025-03-15 10:49:36', 2),
 ('3d7efbf7-0189-11f0-8cdb-088fc3566126', 'Spotify', 'johnchristianfariola@gmail.com', 'E+k2Wnw<V_%G/:V ', 'https://open.spotify.com/', '', '7ae8d5a1-0186-11f0-8cdb-088fc3566126', NULL, 'music-note-beamed', '2025-03-15 10:35:40', '2025-03-15 10:35:40', 2),
 ('576cecda-018c-11f0-8cdb-088fc3566126', 'Manga Zone', 'johnchristianfariola@gmail.com', 'john123&chri', '', '', '93080c0a-0186-11f0-8cdb-088fc3566126', NULL, 'book', '2025-03-15 10:57:52', '2025-03-15 10:57:52', 2),
-('5b4374aa-018d-11f0-8cdb-088fc3566126', 'SmartHome GateWay', 'user', 'admin', 'http://192.168.1.1/', '', '9e0f71a1-0186-11f0-8cdb-088fc3566126', NULL, 'wifi', '2025-03-15 11:05:07', '2025-03-15 11:05:34', 2),
+('5b4374aa-018d-11f0-8cdb-088fc3566126', 'SmartHome GateWay', 'users', 'admin', 'http://192.168.1.1/', '', '9e0f71a1-0186-11f0-8cdb-088fc3566126', NULL, 'wifi', '2025-03-15 11:05:07', '2025-03-17 13:53:23', 2),
 ('68308e22-018b-11f0-8cdb-088fc3566126', 'MCC-LRC ', ' 2021-1485', '2#QsUKgSD7kC', 'https://mcc-lrc.com/', '', '8edfce30-0186-11f0-8cdb-088fc3566126', NULL, 'book', '2025-03-15 10:51:10', '2025-03-15 10:51:10', 2),
-('6a938e48-0187-11f0-8cdb-088fc3566126', 'Facebook', 'johnchristianfariola@gmail.com', 'john@(^09631142759^)&chr', 'https://www.facebook.com/', 'Recovery Email ➜ +639950367559 • johnchristianfariola@gmail.com \r\n', '7ae8d5a1-0186-11f0-8cdb-088fc3566126', NULL, 'facebook', '2025-03-15 10:22:36', '2025-03-15 10:22:36', 2),
+('6a938e48-0187-11f0-8cdb-088fc3566126', 'Facebook', 'johnchristianfariola@gmail.com', 'john@(^09631142759^)&chr', 'https://www.facebook.com/', 'Recovery Email:\r\n639950367559\r\n johnchristianfariola@gmail.com \r\n\r\nMessenger Pin:\r\n200329\r\n', '7ae8d5a1-0186-11f0-8cdb-088fc3566126', NULL, 'facebook', '2025-03-15 10:22:36', '2025-03-16 03:58:50', 2),
 ('6d01daf5-0189-11f0-8cdb-088fc3566126', 'Gmail', 'johnchristianfariola@gmail.com', 'john@(^09631142759^)&chri ', 'https://gmail.com/', '', '85c70d17-0186-11f0-8cdb-088fc3566126', NULL, 'google', '2025-03-15 10:36:59', '2025-03-15 10:36:59', 2),
+('71664845-02c8-11f0-8750-088fc3566126', 'WordPress', 'johnchristianfariola@gmail.com', '1gH&QOJmvs@3Kf*%Y)gY4G9i', 'https://goodland-a1b9f1.ingress-earth.ewp.live/', '', '8edfce30-0186-11f0-8cdb-088fc3566126', NULL, 'wordpress', '2025-03-17 00:40:37', '2025-03-17 00:40:37', 2),
 ('8d7e4c16-0189-11f0-8cdb-088fc3566126', 'Gmail', 'us1071591@gmail.com', 'J0hnChr1st!@nF@r10l', 'https://gmail.com/', '2FA Enabled ➜ Recovery Email • johnchristianfariola@gmail.com • 0995 036 7559 ', '85c70d17-0186-11f0-8cdb-088fc3566126', NULL, 'google', '2025-03-15 10:37:54', '2025-03-15 10:37:54', 2),
+('abb49a26-0203-11f0-a1e1-088fc3566126', 'Infinity Free', 'montgomeryaurelia06@gmail.com', 'skPAfZdkOHWP', 'https://dash.infinityfree.com/login', '', '8edfce30-0186-11f0-8cdb-088fc3566126', NULL, 'infinity', '2025-03-16 01:12:03', '2025-03-16 01:12:03', 2),
 ('ace8a783-018a-11f0-8cdb-088fc3566126', 'MS365', 'johnchristian.fariola@mcclawis.edu.ph ', 'john@(^09061040467^)&chr', 'https://m365.cloud.microsoft/', '', '85c70d17-0186-11f0-8cdb-088fc3566126', NULL, 'browser-edge', '2025-03-15 10:45:56', '2025-03-15 10:45:56', 2),
 ('b2dc8d01-0189-11f0-8cdb-088fc3566126', 'Gmail', 'montgomeryaurelia06@gmail.com ', 'P@ssAurelia2003!', 'https://gmail.com/', '2FA Enabled \r\n\r\n', '85c70d17-0186-11f0-8cdb-088fc3566126', NULL, 'google', '2025-03-15 10:38:56', '2025-03-15 10:38:56', 2),
 ('c3545711-018b-11f0-8cdb-088fc3566126', 'UnityHub', 'johnchristian2003', 'john@(^09631142759^)&Chri ', '', '', '8edfce30-0186-11f0-8cdb-088fc3566126', NULL, 'stack', '2025-03-15 10:53:43', '2025-03-15 10:53:43', 2),

@@ -1,4 +1,3 @@
-
 <?php
 // Start session or necessary setup
 
@@ -46,31 +45,44 @@ $currentPage = $pageMap[$currentFile] ?? 'dashboard'; // Default to 'dashboard' 
 
     <div class="categories">
         <h3>Categories</h3>
-        <div class="category-item <?php if ($currentPage === 'dashboard') echo 'active'; ?>" data-page="dashboard.php">
+        <div class="category-item <?php if ($currentPage === 'dashboard')
+            echo 'active'; ?>" data-page="dashboard.php">
             <i class="bi bi-grid-fill"></i>
             <span>All Items</span>
         </div>
-        <div class="category-item <?php if ($currentPage === 'favorites') echo 'active'; ?>" data-page="favorites_page.php">
+        <div class="category-item <?php if ($currentPage === 'favorites')
+            echo 'active'; ?>"
+            data-page="favorites_page.php">
             <i class="bi bi-star-fill"></i>
             <span>Favorites</span>
         </div>
-        <div class="category-item <?php if ($currentPage === 'websites') echo 'active'; ?>" data-page="websites_page.php">
+        <div class="category-item <?php if ($currentPage === 'websites')
+            echo 'active'; ?>"
+            data-page="websites_page.php">
             <i class="bi bi-globe"></i>
             <span>Websites</span>
         </div>
-        <div class="category-item <?php if ($currentPage === 'payment_cards') echo 'active'; ?>" data-page="payment_cards_page.php">
+        <div class="category-item <?php if ($currentPage === 'payment_cards')
+            echo 'active'; ?>"
+            data-page="payment_cards_page.php">
             <i class="bi bi-credit-card-fill"></i>
             <span>Payment Cards</span>
         </div>
-        <div class="category-item <?php if ($currentPage === 'bank_accounts') echo 'active'; ?>" data-page="bank_accounts_page.php">
+        <div class="category-item <?php if ($currentPage === 'bank_accounts')
+            echo 'active'; ?>"
+            data-page="bank_accounts_page.php">
             <i class="bi bi-bank"></i>
             <span>Bank Accounts</span>
         </div>
-        <div class="category-item <?php if ($currentPage === 'secure_notes') echo 'active'; ?>" data-page="secure_notes_page.php">
+        <div class="category-item <?php if ($currentPage === 'secure_notes')
+            echo 'active'; ?>"
+            data-page="secure_notes_page.php">
             <i class="bi bi-file-earmark-text-fill"></i>
             <span>Secure Notes</span>
         </div>
-        <div class="category-item <?php if ($currentPage === 'personal_info') echo 'active'; ?>" data-page="personal_info_page.php">
+        <div class="category-item <?php if ($currentPage === 'personal_info')
+            echo 'active'; ?>"
+            data-page="personal_info_page.php">
             <i class="bi bi-person-badge-fill"></i>
             <span>Personal Info</span>
         </div>
@@ -106,15 +118,21 @@ $currentPage = $pageMap[$currentFile] ?? 'dashboard'; // Default to 'dashboard' 
 
     <div class="categories">
         <h3>Tools</h3>
-        <div class="category-item <?php if ($currentPage === 'password_health') echo 'active'; ?>" data-page="password_health_page.php">
+        <div class="category-item <?php if ($currentPage === 'password_health')
+            echo 'active'; ?>"
+            data-page="password_health_page.php">
             <i class="bi bi-shield-check"></i>
             <span>Password Health</span>
         </div>
-        <div class="category-item <?php if ($currentPage === 'password_generator') echo 'active'; ?>" data-page="password_generator_page.php">
+        <div class="category-item <?php if ($currentPage === 'password_generator')
+            echo 'active'; ?>"
+            data-page="password_generator_page.php">
             <i class="bi bi-key-fill"></i>
             <span>Password Generator</span>
         </div>
-        <div class="category-item <?php if ($currentPage === 'settings') echo 'active'; ?>" data-page="settings_page.php">
+        <div class="category-item <?php if ($currentPage === 'settings')
+            echo 'active'; ?>"
+            data-page="settings_page.php">
             <i class="bi bi-gear-fill"></i>
             <span>Settings</span>
         </div>
@@ -123,7 +141,7 @@ $currentPage = $pageMap[$currentFile] ?? 'dashboard'; // Default to 'dashboard' 
 
 <script>
     document.querySelectorAll('.category-item').forEach(item => {
-        item.addEventListener('click', function() {
+        item.addEventListener('click', function () {
             const page = this.getAttribute('data-page');
             window.location.href = page;
         });
