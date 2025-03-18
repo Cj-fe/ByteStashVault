@@ -1,7 +1,3 @@
-<?php
-// Example: Determining the current page
-$currentPage = basename($_SERVER['REQUEST_URI'], ".php");
-?>
 <?php require_once 'includes/auth.php'; ?>
 <?php require_once 'includes/conn.php'; ?>
 
@@ -33,7 +29,7 @@ $currentPage = basename($_SERVER['REQUEST_URI'], ".php");
 
             <section class="content">
                 <div class="password-header">
-                    <h2>Favorites</h2> <!-- Adjusted title to reflect content -->
+                    <h2>All Items</h2>
                     <div class="view-toggle">
                         <?php
                         // Fetch the display option from the database
@@ -45,8 +41,8 @@ $currentPage = basename($_SERVER['REQUEST_URI'], ".php");
                         $displayOption = $result['option'] ?? 0; // Default to grid view if not set
                         
                         // Determine which button should be active
-                        $gridActiveClass = $displayOption == 0 ? 'active' : '';
-                        $listActiveClass = $displayOption == 1 ? 'active' : '';
+                        $gridActiveClass = $displayOption === 0 ? 'active' : '';
+                        $listActiveClass = $displayOption === 1 ? 'active' : '';
                         ?>
                         <button class="<?php echo $gridActiveClass; ?>">
                             <i class="bi bi-grid"></i>
@@ -59,14 +55,14 @@ $currentPage = basename($_SERVER['REQUEST_URI'], ".php");
                     </div>
                 </div>
 
-                <div class="password-grid" style="display: <?php echo $displayOption == 0 ? 'grid' : 'none'; ?>;">
+                <div class="password-grid" style="display: <?php echo $displayOption === 0 ? 'grid' : 'none'; ?>;">
                     <?php
-                    // Fetch password items that are marked as favorite
-                    $sql = "SELECT p.id, p.website_name, p.username, p.password, p.website_url, p.folder, p.icon_image,
-                                    p.icon_file_name, p.date_created, fd.folder_name
+                    // Fetch and sort favorite password items by website_name
+                    $sql = "SELECT p.id, p.website_name, p.username, p.password, p.website_url, p.folder, p.icon_image, 
+                                   p.icon_file_name, p.date_created, f.folder_name
                             FROM tbl_save_passwords p
-                            INNER JOIN tbl_favorites f ON p.id = f.password_id
-                            LEFT JOIN tbl_folder fd ON p.folder = fd.folder_id
+                            INNER JOIN tbl_favorites fav ON p.id = fav.password_id
+                            LEFT JOIN tbl_folder f ON p.folder = f.folder_id
                             ORDER BY p.website_name"; // Sort by website_name
                     
                     $stmt = $conn->prepare($sql);
@@ -102,9 +98,9 @@ $currentPage = basename($_SERVER['REQUEST_URI'], ".php");
                                         <i class="bi bi-pencil"></i>
                                         Update
                                     </div>
-                                    <div class="card-dropdown-action" title="Remove from favorites">
-                                        <i class="bi bi-star-fill"></i>
-                                        Remove from favorites
+                                    <div class="card-dropdown-action" title="Add to favorites">
+                                        <i class="bi bi-star"></i>
+                                        Add to favorites
                                     </div>
                                     <div class="card-dropdown-action" title="Delete">
                                         <i class="bi bi-trash"></i>
@@ -150,8 +146,8 @@ $currentPage = basename($_SERVER['REQUEST_URI'], ".php");
                                 <button class="action-btn" title="Edit">
                                     <i class="bi bi-pencil"></i>
                                 </button>
-                                <button class="action-btn" title="Remove from favorites">
-                                    <i class="bi bi-star-fill"></i>
+                                <button class="action-btn" title="Add to favorites">
+                                    <i class="bi bi-star"></i>
                                 </button>
                                 <button class="action-btn" title="Delete">
                                     <i class="bi bi-trash"></i>
@@ -161,7 +157,7 @@ $currentPage = basename($_SERVER['REQUEST_URI'], ".php");
                     <?php } ?>
                 </div>
 
-                <div class="password-list" style="display: <?php echo $displayOption == 1 ? 'flex' : 'none'; ?>;">
+                <div class="password-list" style="display: <?php echo $displayOption === 1 ? 'flex' : 'none'; ?>;">
                     <?php foreach ($passwords as $row) { ?>
                         <div class="password-list-item" data-id="<?php echo htmlspecialchars($row['id']); ?>">
                             <div class="list-item-content">
@@ -181,8 +177,8 @@ $currentPage = basename($_SERVER['REQUEST_URI'], ".php");
                                 <button class="action-btn" title="Edit">
                                     <i class="bi bi-pencil"></i>
                                 </button>
-                                <button class="action-btn" title="Remove from favorites">
-                                    <i class="bi bi-star-fill"></i>
+                                <button class="action-btn" title="Add to favorites">
+                                    <i class="bi bi-star"></i>
                                 </button>
                                 <button class="action-btn" title="Delete">
                                     <i class="bi bi-trash"></i>
@@ -201,9 +197,9 @@ $currentPage = basename($_SERVER['REQUEST_URI'], ".php");
                                     <i class="bi bi-pencil"></i>
                                     Update
                                 </div>
-                                <div class="card-dropdown-action" title="Remove from favorites">
-                                    <i class="bi bi-star-fill"></i>
-                                    Remove from favorites
+                                <div class="card-dropdown-action" title="Add to favorites">
+                                    <i class="bi bi-star"></i>
+                                    Add to favorites
                                 </div>
                                 <div class="card-dropdown-action" title="Delete">
                                     <i class="bi bi-trash"></i>
