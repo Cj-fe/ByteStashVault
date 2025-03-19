@@ -68,8 +68,11 @@
                         ?>
                         <div class="password-card" data-id="<?php echo htmlspecialchars($row['id']); ?>">
                             <div class="card-header">
-                                <div class="password-icon">
+                                <div class="list-item-icon">
                                     <i class="bi bi-<?php echo htmlspecialchars($row['icon_file_name']); ?>"></i>
+                                </div>
+                                <div class="card-title">
+                                    <h3><?php echo htmlspecialchars($row['website_name']); ?></h3>
                                 </div>
                                 <?php if ($row['folder_name']) { ?>
                                     <div class="folder-badge">
@@ -103,9 +106,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-title">
-                                <h3><?php echo htmlspecialchars($row['website_name']); ?></h3>
-                            </div>
+
                             <div class="password-details">
                                 <div class="detail-item">
                                     <div class="detail-label">Username:</div>
@@ -159,7 +160,7 @@
                                     <i class="bi bi-<?php echo htmlspecialchars($row['icon_file_name']); ?>"></i>
                                 </div>
                                 <div class="list-item-details">
-                                    <h3><?php echo htmlspecialchars($row['website_name']); ?></h3>              
+                                    <h3><?php echo htmlspecialchars($row['website_name']); ?></h3>
                                 </div>
                             </div>
                             <!-- Desktop action buttons -->
@@ -212,11 +213,12 @@
         &copy; 2025 SecureVault Password Manager. All rights reserved.
     </footer>
 
-    
+
 </body>
 
-    <!-- Custom Script -->
-    <script type="module" src="assets/script.js"></script>
-    <script type="module" src="assets/aside.js"></script>
-    <script src="assets/notificationManager.js"></script>
+<!-- Custom Script -->
+<script type="module" src="assets/script.js"></script>
+<script type="module" src="assets/aside.js"></script>
+<script src="assets/notificationManager.js"></script>
+
 </html>
