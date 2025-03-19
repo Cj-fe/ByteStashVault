@@ -17,7 +17,7 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>SecureVault - Password Manager View Folder</title>
-      <?php require_once 'includes/header.php'; ?>
+      <?php include 'includes/header.php'; ?>
       <link rel="stylesheet" href="assets/style.css">
   </head>
   <body>
