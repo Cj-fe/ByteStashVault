@@ -82,7 +82,6 @@
                               </div>
                               <div class="card-title">
                                   <h3><?php echo htmlspecialchars($row['website_name']); ?></h3>
-                                  <p><?php echo htmlspecialchars($row['username']); ?></p>
                               </div>
                               <div class="password-details">
                                   <div class="detail-item">
@@ -127,9 +126,9 @@
                                   <div class="list-item-icon">
                                       <i class="bi bi-<?php echo htmlspecialchars($row['icon_file_name']); ?>"></i>
                                   </div>
+
                                   <div class="list-item-details">
                                       <h3><?php echo htmlspecialchars($row['website_name']); ?></h3>
-                                      <p><?php echo htmlspecialchars($row['username']); ?></p>
                                   </div>
                               </div>
                               <div class="list-item-actions desktop-only">
