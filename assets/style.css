@@ -1024,6 +1024,9 @@ footer {
 
   .password-grid {
     grid-template-columns: 1fr;
+  } 
+  .password-details .detail-item {
+    align-items: start;
   }
 }
 
@@ -1047,6 +1050,9 @@ footer {
 
   .view-toggle {
     margin-top: 10px;
+  }
+  .password-details .detail-item {
+    align-items: start;
   }
 }
 
@@ -1155,6 +1161,9 @@ footer {
 
   .card-actions {
     display: none;
+  }
+  .password-details .detail-item {
+    align-items: start;
   }
 }
 /*============== Media Queries for Responsive Design End Here ==============*/

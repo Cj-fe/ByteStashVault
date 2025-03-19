@@ -17,7 +17,7 @@ try {
 
         if ($count > 0) {
             $response['status'] = 'info';
-            $response['message'] = 'This password is already in your favorites.';
+            $response['message'] = 'This is already added';
         } else {
             // Prepare SQL query
             $sql = "INSERT INTO tbl_favorites (id, password_id, created_at, updated_at) 
@@ -32,7 +32,7 @@ try {
             ]);
 
             $response['status'] = 'success';
-            $response['message'] = 'Password added to favorites successfully.';
+            $response['message'] = 'Added to favorites.';
         }
     } else {
         $response['message'] = 'Invalid request.';

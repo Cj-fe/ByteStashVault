@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     /*============ Mobile Menu Toggle End Here ============*/
 
-     /* ============ Username Reveal Functionality Start Here ============ */
-     document.querySelectorAll('.username-field').forEach(field => {
+    /* ============ Username Reveal Functionality Start Here ============ */
+    document.querySelectorAll('.username-field').forEach(field => {
         field.addEventListener('click', function () {
             const dots = field.querySelector('.username-dots');
             const actualUsername = field.getAttribute('data-username');
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
     /* ============ Username Reveal Functionality End Here ============ */
-    
+
 
     /*============ Close Sidebar on Outside Click Start Here ============*/
     document.addEventListener('click', function (event) {
@@ -391,11 +391,34 @@ document.addEventListener('DOMContentLoaded', function () {
             if (actionType === "Delete") {
                 openDeleteModal(cardId);
             }
+            if (actionType === "Add to favorites") {
+                const iconElement = this.querySelector('i');
+
+                if (iconElement.classList.contains('bi-star-fill')) {
+                    removeFromFavorites(cardId, iconElement);
+                } else {
+                    addToFavorites(cardId, iconElement);
+                }
+
+                // Also update the corresponding action button icon
+                const actionButtonIcon = this.closest('.password-card, .password-list-item')
+                                            .querySelector('.action-btn[title="Add to favorites"] i');
+                if (iconElement.classList.contains('bi-star-fill')) {
+                    actionButtonIcon.classList.remove('bi-star');
+                    actionButtonIcon.classList.add('bi-star-fill');
+                } else {
+                    actionButtonIcon.classList.remove('bi-star-fill');
+                    actionButtonIcon.classList.add('bi-star');
+                }
+            }
+
 
             // Close the dropdown after action
             this.closest('.card-actions-dropdown').classList.remove('active');
         });
     });
+
+
 
     /* ============ Eye Button Functionality Start Here ============ */
     function setupEyeButtonClickHandlers() {
@@ -623,32 +646,32 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 if (data.status === 'success') {
                     let passwords = data.passwords;
-    
+
                     // Sort passwords alphabetically by website name
                     passwords.sort((a, b) => {
                         return a.website_name.localeCompare(b.website_name);
                     });
-    
+
                     const passwordGrid = document.querySelector('.password-grid');
                     const passwordList = document.querySelector('.password-list');
-    
+
                     console.log('Fetched and sorted passwords: ', passwords); // Debug: Check the fetched and sorted data
-    
+
                     // Clear existing items to prevent duplicates
                     passwordGrid.innerHTML = '';
                     passwordList.innerHTML = '';
-    
+
                     // Populate grid and list views with sorted data
                     passwords.forEach(row => {
                         console.log('Processing row: ', row); // Debug: Check each loop iteration
-    
+
                         const passwordCard = createPasswordCard(row);
                         const passwordListItem = createPasswordListItem(row);
-    
+
                         passwordGrid.appendChild(passwordCard);
                         passwordList.appendChild(passwordListItem);
                     });
-    
+
                     // Re-setup event handlers for all functionalities
                     setupListItemClickHandlers();
                     setupEyeButtonClickHandlers();
@@ -932,67 +955,74 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             body: `password_id=${passwordId}`
         })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    $.notify(data.message, "success");
+                    // Toggles the star icon to filled style
+                    iconElement.classList.remove('bi-star');
+                    iconElement.classList.add('bi-star-fill');
+                } else {
+                    $.notify(data.message, "info");
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                $.notify("An error occurred while adding to favorites.", "error");
+            });
+    }
+
+    function removeFromFavorites(passwordId, iconElement) {
+        fetch('includes/remove_from_favorites.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `password_id=${passwordId}`
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    $.notify(data.message, "success");
+                    iconElement.classList.remove('bi-star-fill');
+                    iconElement.classList.add('bi-star');
+                } else {
+                    $.notify(data.message, "error");
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                $.notify("An error occurred while removing from favorites.", "error");
+            });
+    }
+
+    fetch('includes/fetch_favorites.php')
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success') {
-                $.notify(data.message, "success");
-                // Toggles the star icon to filled style
-                iconElement.classList.remove('bi-star');
-                iconElement.classList.add('bi-star-fill');
+                const favoriteIds = data.data;
+                document.querySelectorAll('.password-card, .password-list-item').forEach(item => {
+                    const passwordId = item.getAttribute('data-id');
+                    const starIcon = item.querySelector('.action-btn[title="Add to favorites"] i');
+                    if (favoriteIds.includes(passwordId)) {
+                        starIcon.classList.remove('bi-star');
+                        starIcon.classList.add('bi-star-fill'); // Fill the star icon for favorites
+
+                        // Fill the dropdown star if it's in favorites
+                        const dropdownStar = item.querySelector('.card-dropdown-action[title="Add to favorites"] i');
+                        if (dropdownStar) {
+                            dropdownStar.classList.remove('bi-star');
+                            dropdownStar.classList.add('bi-star-fill');
+                        }
+                    }
+                });
             } else {
-                $.notify(data.message, "info");
+                console.error('Failed to fetch favorites:', data.message);
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            $.notify("An error occurred while adding to favorites.", "error");
         });
-    }
-
-    function removeFromFavorites(passwordId, iconElement) {
-      fetch('includes/remove_from_favorites.php', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          body: `password_id=${passwordId}`
-      })
-          .then(response => response.json())
-          .then(data => {
-              if (data.status === 'success') {
-                  $.notify(data.message, "success");
-                  iconElement.classList.remove('bi-star-fill');
-                  iconElement.classList.add('bi-star');
-              } else {
-                  $.notify(data.message, "error");
-              }
-          })
-          .catch(error => {
-              console.error('Error:', error);
-              $.notify("An error occurred while removing from favorites.", "error");
-          });
-  }
-
-    fetch('includes/fetch_favorites.php')
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === 'success') {
-            const favoriteIds = data.data;
-            document.querySelectorAll('.password-card, .password-list-item').forEach(item => {
-                const passwordId = item.getAttribute('data-id');
-                const starIcon = item.querySelector('.action-btn[title="Add to favorites"] i');
-                if (favoriteIds.includes(passwordId)) {
-                    starIcon.classList.remove('bi-star');
-                    starIcon.classList.add('bi-star-fill'); // Fill the star icon for favorites
-                }
-            });
-        } else {
-            console.error('Failed to fetch favorites:', data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
 
     /*============ Favorites Button Click Handler Start ============*/
     function setupFavoritesButtonClickHandlers() {
