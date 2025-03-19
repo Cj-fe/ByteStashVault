@@ -17,10 +17,7 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>SecureVault - Password Manager View Folder</title>
-      <!-- Stylesheets -->
-      <link rel="stylesheet" href="assets/node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
-      <link rel="stylesheet" href="assets/node_modules/animate.css/animate.min.css">
-      <link rel="stylesheet" href="assets/node_modules/notify/css/notify-metro.min.css">
+      <?php require_once 'includes/header.php'; ?>
       <link rel="stylesheet" href="assets/style.css">
   </head>
   <body>
@@ -162,8 +159,6 @@
           &copy; 2025 SecureVault Password Manager. All rights reserved.
       </footer>
   </body>
-  <script src="assets/node_modules/jquery/js/jquery-3.6.0.min.js"></script>
-  <script src="assets/node_modules/notify/css/js/notify.min.js"></script>
   <script type="module" src="assets/script.js"></script>
   <script type="module" src="assets/aside.js"></script>
   <script src="assets/notificationManager.js"></script>
