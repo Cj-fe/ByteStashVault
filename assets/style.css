@@ -29,6 +29,25 @@ body {
 }
 /*============== Global Styles End Here ==============*/
 
+/*============== Loading Styles Start Here ==============*/
+#loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  z-index: 9999;
+}
+
+.loaded #loading {
+  display: none;
+}
+/*============== Loading Styles End Here ==============*/
+
 /*============== Header Start Here ==============*/
 header {
   background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);

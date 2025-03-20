@@ -821,8 +821,8 @@ document.addEventListener('DOMContentLoaded', function () {
     /*============ Refresh Password List Function End ============*/
 
     /*============ Pagination Logic Start Here ============*/
-    const itemsPerPageGrid = 6;
-    const itemsPerPageList = 9;
+    const itemsPerPageGrid = 8;
+    const itemsPerPageList = 12;
     let currentPage = 1;
     let totalItems = 0;
     let totalPages = 0;

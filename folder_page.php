@@ -22,6 +22,9 @@ if ($folder_id === null) {
 </head>
 
 <body>
+<div id="loading">
+        <div id="lottie-animation" style="width:300px; height:300px;"></div>
+    </div>
     <?php include 'includes/navbar.php'; ?>
 
     <main>
@@ -165,8 +168,11 @@ if ($folder_id === null) {
         &copy; 2025 SecureVault Password Manager. All rights reserved.
     </footer>
 </body>
+
+<script src="assets/lottie/lottie.min.js"></script>
 <script type="module" src="assets/script.js"></script>
 <script type="module" src="assets/aside.js"></script>
 <script src="assets/notificationManager.js"></script>
+<script src="assets/loading.js"></script>
 
 </html>

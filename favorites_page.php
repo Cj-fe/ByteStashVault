@@ -14,7 +14,9 @@
 </head>
 
 <body>
-
+ <div id="loading">
+        <div id="lottie-animation" style="width:300px; height:300px;"></div>
+    </div>
     <?php include 'includes/navbar.php'; ?>
 
     <main>
@@ -217,8 +219,10 @@
 </body>
 
 <!-- Custom Script -->
+<script src="assets/lottie/lottie.min.js"></script>
 <script type="module" src="assets/script.js"></script>
 <script type="module" src="assets/aside.js"></script>
 <script src="assets/notificationManager.js"></script>
+<script src="assets/loading.js"></script>
 
 </html>
