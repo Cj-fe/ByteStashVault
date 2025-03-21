@@ -831,31 +831,47 @@ document.addEventListener('DOMContentLoaded', function () {
         const isGridView = passwordGrid.style.display === 'grid';
         const itemsPerPage = isGridView ? itemsPerPageGrid : itemsPerPageList;
         const items = isGridView ? passwordGrid.children : passwordList.children;
-
+    
         totalItems = items.length;
         totalPages = Math.ceil(totalItems / itemsPerPage);
-
+    
         // Hide all items
         Array.from(items).forEach(item => item.style.display = 'none');
-
+    
         // Show items for the current page
         const start = (currentPage - 1) * itemsPerPage;
         const end = start + itemsPerPage;
         Array.from(items).slice(start, end).forEach(item => item.style.display = '');
-
-        // Update pagination controls
-        document.querySelector('.pagination-info').textContent = `Page ${currentPage} of ${totalPages}`;
-        document.querySelector('.prev-page').disabled = currentPage === 1;
-        document.querySelector('.next-page').disabled = currentPage === totalPages;
+    
+        // Show or hide pagination controls based on total item count
+        const paginationControls = document.querySelector('.pagination-controls');
+        if (totalItems > 5) {
+            paginationControls.classList.remove('hidden');
+        } else {
+            paginationControls.classList.add('hidden');
+        }
+        
+        if (totalItems <= itemsPerPage) {
+            paginationControls.style.display = 'none'; // previous logic for items within a single page
+        } else {
+            paginationControls.style.display = 'block'; // Ensures they appear when needed
+            document.querySelector('.pagination-info').textContent = `Page ${currentPage} of ${totalPages}`;
+            document.querySelector('.prev-page').disabled = currentPage === 1;
+            document.querySelector('.next-page').disabled = currentPage === totalPages;
+        }
     }
+    
 
     function setupPaginationControls() {
         const paginationContainer = document.createElement('div');
         paginationContainer.className = 'pagination-controls';
         paginationContainer.innerHTML = `
+        <br>
+         <center>
             <button class="prev-page">Previous</button>
             <span class="pagination-info"></span>
             <button class="next-page">Next</button>
+            </center>
         `;
 
         document.querySelector('.content').appendChild(paginationContainer);

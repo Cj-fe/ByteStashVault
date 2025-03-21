@@ -332,6 +332,10 @@ main {
 .content {
   display: flex;
   flex-direction: column;
+  position: relative;
+  /* Ensures child elements can be placed relatively */
+  min-height: 100vh;
+  /* Ensures there's enough height for positioning */
 }
 
 .password-header {
@@ -391,12 +395,10 @@ main {
   position: relative;
 }
 
-
 .password-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
-
 
 .password-icon {
   width: 40px;
@@ -434,7 +436,6 @@ main {
   color: var(--text-muted);
   margin-bottom: 15px;
 }
-
 
 .password-details .detail-item {
   display: flex;
@@ -1043,7 +1044,7 @@ footer {
 
   .password-grid {
     grid-template-columns: 1fr;
-  } 
+  }
   .password-details .detail-item {
     align-items: start;
   }
@@ -1327,11 +1328,15 @@ footer {
 
 /*============== Pagination Styles Start Here ==============*/
 .pagination-controls {
+  margin-top: auto;
+  /* Pushes the pagination-controls down to the end of .content */
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-  gap: 10px;
+
+  padding: 5px 10px;
+  border-radius: 5px;
+ 
+  position: relative;
+  /* Keeps the control relative within the content section */
 }
 
 .pagination-info {
@@ -1359,5 +1364,7 @@ footer {
   color: var(--text-muted);
   cursor: not-allowed;
 }
+.pagination-controls.hidden {
+  display: none;
+}
 /*============== Pagination Styles End Here ==============*/
-

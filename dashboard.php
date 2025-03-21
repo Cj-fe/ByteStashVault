@@ -11,7 +11,13 @@
     <?php include 'includes/header.php'; ?>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/style.css">
-  
+    <style>
+        
+
+      
+
+        
+    </style>
 </head>
 
 <body>
