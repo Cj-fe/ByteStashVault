@@ -829,6 +829,7 @@ footer {
 .card-actions-dropdown.active {
   display: block;
   animation: fadeIn 0.2s ease-in-out;
+  z-index: 1000;
 }
 
 .card-dropdown-action {
@@ -1336,7 +1337,7 @@ footer {
 
   padding: 5px 10px;
   border-radius: 5px;
- 
+ z-index: -1;
   position: relative;
   /* Keeps the control relative within the content section */
 }

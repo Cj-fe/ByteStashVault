@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .catch(error => {
                 console.error('Error:', error);
-                $.notify("Error Occured Please Try Again.", "error");
+                $.notify("An error occurred while fetching password details.", "error");
             });
     }
 
@@ -471,7 +471,7 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .catch(error => {
                 console.error('Error:', error);
-                $.notify("Error Occured Please Try Again.", "error");
+                $.notify("An error occurred while fetching password details.", "error");
             });
     }
 
@@ -548,7 +548,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (data.status === 'success') {
                     $.notify(data.message, "success");
                     closeEditModal();
-                    refreshPasswordList(); // Refresh the list after updating
                 } else {
                     $.notify(data.message, "error");
                 }
@@ -621,60 +620,6 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
     /*============ Update Display Option Function End ============*/
-
-
-    /*============ Refresh Password List Function Start ============*/
-    function refreshPasswordList() {
-        fetch('includes/get_passwords.php')
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    let passwords = data.passwords;
-
-                    // Sort passwords alphabetically by website name
-                    passwords.sort((a, b) => {
-                        return a.website_name.localeCompare(b.website_name);
-                    });
-
-                    const passwordGrid = document.querySelector('.password-grid');
-                    const passwordList = document.querySelector('.password-list');
-
-                    console.log('Fetched and sorted passwords: ', passwords); // Debug: Check the fetched and sorted data
-
-                    // Clear existing items to prevent duplicates
-                    passwordGrid.innerHTML = '';
-                    passwordList.innerHTML = '';
-
-                    // Populate grid and list views with sorted data
-                    passwords.forEach(row => {
-                        console.log('Processing row: ', row); // Debug: Check each loop iteration
-
-                        const passwordCard = createPasswordCard(row);
-                        const passwordListItem = createPasswordListItem(row);
-
-                        passwordGrid.appendChild(passwordCard);
-                        passwordList.appendChild(passwordListItem);
-                    });
-
-                    // Re-setup event handlers for all functionalities
-                    setupListItemClickHandlers();
-                    setupEyeButtonClickHandlers();
-                    setupViewButtonClickHandlers();
-                    setupEditButtonClickHandlers();
-                    setupDeleteButtonClickHandlers();
-                    setupFavoritesButtonClickHandlers();
-                    updatePagination();
-                } else {
-                    console.error('Failed to fetch passwords:', data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }
-
-    // Expose the function globally
-    window.refreshPasswordList = refreshPasswordList;
 
     // Function setups are maintained to seamlessly attach to current DOM.
 
@@ -914,7 +859,6 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 if (data.status === 'success') {
                     $.notify(data.message, "success");
-                    refreshPasswordList();
                 } else {
                     $.notify(data.message, "error");
                 }
@@ -1046,6 +990,3 @@ document.addEventListener('DOMContentLoaded', function () {
         setupFavoritesButtonClickHandlers();
     });
 });
-
-
-

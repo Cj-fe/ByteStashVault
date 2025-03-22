@@ -62,8 +62,7 @@ document.addEventListener("DOMContentLoaded", function() {
             searchResultMessage.style.display = 'none';
         }
 
-        // Recalculate Pagination
-        updatePagination();
+        
     }
 
     // Event listeners for toggling search overlay
