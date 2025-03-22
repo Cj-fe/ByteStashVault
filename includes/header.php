@@ -11,3 +11,10 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Notify.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
+
+<script src="assets/lottie/lottie.min.js"></script>
+<script type="module" src="assets/script.js"></script>
+<script type="module" src="assets/aside.js"></script>
+<script src="assets/notificationManager.js"></script>
+<script src="assets/lottie_animation.js"></script>
+<script src="assets/navbar.js"></script>

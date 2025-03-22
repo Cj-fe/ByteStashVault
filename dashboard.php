@@ -11,13 +11,6 @@
     <?php include 'includes/header.php'; ?>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/style.css">
-    <style>
-        
-
-      
-
-        
-    </style>
 </head>
 
 <body>
@@ -227,10 +220,6 @@
 </body>
 
 <!-- Custom Script -->
-<script src="assets/lottie/lottie.min.js"></script>
-<script type="module" src="assets/script.js"></script>
-<script type="module" src="assets/aside.js"></script>
-<script src="assets/notificationManager.js"></script>
-<script src="assets/lottie_animation.js"></script>
+
 
 </html>

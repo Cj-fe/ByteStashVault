@@ -130,23 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     /*============ Toggle Password Visibility End Here ============*/
 
-    /*============ Toggle Profile Dropdown Start Here ============*/
-    const profileButton = document.querySelector('.profile');
-    const profileDropdown = document.querySelector('.profile-dropdown');
-
-    profileButton.addEventListener('click', (e) => {
-        e.stopPropagation();
-        profileDropdown.classList.toggle('active');
-    });
-
-    document.addEventListener('click', (e) => {
-        if (profileDropdown.classList.contains('active') &&
-            !profileDropdown.contains(e.target) &&
-            !profileButton.contains(e.target)) {
-            profileDropdown.classList.remove('active');
-        }
-    });
-    /*============ Toggle Profile Dropdown End Here ============*/
+    
 
     /*============ Toggle Icon Input Start Here ============*/
     document.getElementById('toggleIconInput').addEventListener('click', function (event) {

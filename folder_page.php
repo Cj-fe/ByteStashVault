@@ -169,10 +169,5 @@ if ($folder_id === null) {
     </footer>
 </body>
 
-<script src="assets/lottie/lottie.min.js"></script>
-<script type="module" src="assets/script.js"></script>
-<script type="module" src="assets/aside.js"></script>
-<script src="assets/notificationManager.js"></script>
-<script src="assets/lottie_animation.js"></script>
 
 </html>
