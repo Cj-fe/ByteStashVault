@@ -211,9 +211,8 @@
 
     <?php include 'partials/modal.php'; ?>
 
-    <footer>
-        &copy; 2025 SecureVault Password Manager. All rights reserved.
-    </footer>
+    <?php include 'partials/footer.php'; ?>
+
 
 
 </body>

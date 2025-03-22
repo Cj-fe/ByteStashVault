@@ -52,6 +52,8 @@
                     </div>
                 </div>
 
+                <div id="search-result-message" style="display: none; text-align: center; margin-top: 20px; color: red;"></div>
+                
                 <div class="password-grid" style="display: <?php echo $displayOption === 0 ? 'grid' : 'none'; ?>;">
                     <?php
                     // Fetch and sort password items by website_name
@@ -211,10 +213,7 @@
     </main>
 
     <?php include 'partials/modal.php'; ?>
-
-    <footer>
-        &copy; 2025 SecureVault Password Manager. All rights reserved.
-    </footer>
+    <?php include 'partials/footer.php'; ?>
 
 
 </body>

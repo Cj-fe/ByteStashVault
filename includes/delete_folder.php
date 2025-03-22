@@ -36,10 +36,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($stmtFolder->rowCount() > 0) {
             $conn->commit();
             $response['status'] = 'success';
-            $response['message'] = 'Folder and associated passwords deleted successfully!';
+            $response['message'] = 'Folder deleted successfully!';
         } else {
             $conn->rollBack();
-            $response['message'] = 'Folder not found or already deleted.';
+            $response['message'] = 'Folder already deleted.';
         }
     } catch (PDOException $e) {
         $conn->rollBack();
