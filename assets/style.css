@@ -29,6 +29,7 @@ body {
 }
 /*============== Global Styles End Here ==============*/
 
+
 /*============== Loading Styles Start Here ==============*/
 #loading {
   display: flex;
@@ -47,6 +48,7 @@ body {
   display: none;
 }
 /*============== Loading Styles End Here ==============*/
+
 
 /*============== Header Start Here ==============*/
 header {
@@ -332,10 +334,6 @@ main {
 .content {
   display: flex;
   flex-direction: column;
-  position: relative;
-  /* Ensures child elements can be placed relatively */
-  min-height: 100vh;
-  /* Ensures there's enough height for positioning */
 }
 
 .password-header {
@@ -395,10 +393,12 @@ main {
   position: relative;
 }
 
+
 .password-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
+
 
 .password-icon {
   width: 40px;
@@ -436,6 +436,7 @@ main {
   color: var(--text-muted);
   margin-bottom: 15px;
 }
+
 
 .password-details .detail-item {
   display: flex;
@@ -1325,6 +1326,7 @@ footer {
   }
 }
 /*============== Mobile Search Icon and Overlay End Here ==============*/
+
 
 /*============== Pagination Styles Start Here ==============*/
 .pagination-controls {

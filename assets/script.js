@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .catch(error => {
                 console.error('Error:', error);
-                $.notify("An error occurred while fetching password details.", "error");
+                $.notify("Error Occured Please Try Again.", "error");
             });
     }
 
@@ -471,7 +471,7 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .catch(error => {
                 console.error('Error:', error);
-                $.notify("An error occurred while fetching password details.", "error");
+                $.notify("Error Occured Please Try Again.", "error");
             });
     }
 
