@@ -713,7 +713,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
         `;
         return card;
-    }
+    }   
 
     function createPasswordListItem(row) {
         const listItem = document.createElement('div');

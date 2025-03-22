@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function showLoadingScreen() {
         setTimeout(() => {
             document.body.classList.add('loaded');
-        }, 3000);
+        }, 5000);
     }
 
     showLoadingScreen();
