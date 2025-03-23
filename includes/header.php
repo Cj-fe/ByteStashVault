@@ -19,3 +19,4 @@
 <script src="assets/lottie_animation.js"></script>
 <script type="module" src="assets/script.js"></script>
 <script src="assets/navbar.js"></script>
+<script src="assets/password_generated.js"></script>

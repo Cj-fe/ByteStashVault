@@ -46,22 +46,25 @@ document.addEventListener('DOMContentLoaded', function () {
     const passwordGrid = document.querySelector('.password-grid');
     const passwordList = document.querySelector('.password-list');
 
-    gridButton.addEventListener('click', function () {
-        gridButton.classList.add('active');
-        listButton.classList.remove('active');
-        passwordGrid.style.display = 'grid';
-        passwordList.style.display = 'none';
-        updatePagination();
-    });
+    if (gridButton && listButton && passwordGrid && passwordList) {
+        gridButton.addEventListener('click', function () {
+            gridButton.classList.add('active');
+            listButton.classList.remove('active');
+            passwordGrid.style.display = 'grid';
+            passwordList.style.display = 'none';
+            updatePagination();
+        });
 
-    listButton.addEventListener('click', function () {
-        listButton.classList.add('active');
-        gridButton.classList.remove('active');
-        passwordList.style.display = 'flex';
-        passwordGrid.style.display = 'none';
-        updatePagination();
-    });
+        listButton.addEventListener('click', function () {
+            listButton.classList.add('active');
+            gridButton.classList.remove('active');
+            passwordList.style.display = 'flex';
+            passwordGrid.style.display = 'none';
+            updatePagination();
+        });
+    }
 
+   
     // New functionality: Close dropdowns on screen resize
     window.addEventListener('resize', function () {
         document.querySelectorAll('.card-actions-dropdown.active').forEach(dropdown => {

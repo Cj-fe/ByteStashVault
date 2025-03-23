@@ -5,14 +5,20 @@ include 'includes/conn.php';
 // Define site sections that require authentication
 $protected_sections = [
     'dashboard.php',
-    'profile.php',
-    'settings.php',
-    'admin.php',
-    'vault.php',
-    'passwords/',  // Protect all files in this directory
+    'favorites_page.php',
+    'websites_page.php',
+    'payment_cards_page.php', 
+    'bank_accounts_page.php',
+    'secure_notes_page.php',
+    'personal_info_page.php',
+    'password_health_page.php',
+    'password_generator_page.php',
+    'settings_page.php',
+    'folder_page.php',
+    'insert_password.php',
+    'includes/',  // Protect all files in this directory
     'admin/'       // Protect all files in this directory
 ];
-
 // Define admin-only sections
 $admin_sections = [
     'admin.php',
