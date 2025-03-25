@@ -102,7 +102,7 @@
                         <button class="clear-history" id="clearHistory">
                             <i class="bi bi-trash"></i> Clear History
                         </button>
-                    </div>
+                   N </div>
                     <ul class="password-history-list" id="passwordHistoryList">
                         <!-- Dynamic content will be inserted here -->
                     </ul>
@@ -114,7 +114,6 @@
     <?php include 'partials/modal.php'; ?>
     <?php include 'partials/footer.php'; ?>
 
-   
 </body>
 
 </html>

@@ -1,4 +1,5 @@
 <?php
+//auth.php
 session_start();
 include 'includes/conn.php';
 
@@ -14,11 +15,13 @@ $protected_sections = [
     'password_health_page.php',
     'password_generator_page.php',
     'settings_page.php',
+    'update_profile.php',
     'folder_page.php',
     'insert_password.php',
     'includes/',  // Protect all files in this directory
     'admin/'       // Protect all files in this directory
 ];
+
 // Define admin-only sections
 $admin_sections = [
     'admin.php',
@@ -79,6 +82,7 @@ function validateRememberToken() {
             $_SESSION['last_name'] = $user['last_name'];
             $_SESSION['role'] = $user['role'];
             $_SESSION['access_level'] = $user['access_level'];
+            $_SESSION['image'] = $user['image'];
             
             // Update last login timestamp
             $stmtLogin = $conn->prepare("UPDATE tbl_account SET last_login = NOW() WHERE id = :id");
@@ -117,6 +121,54 @@ function isAdmin() {
     }
     
     return $_SESSION['role'] === 'admin';
+}
+
+// Fetch current user data
+function getCurrentUserData() {
+    global $conn;
+    
+    if (!isLoggedIn()) {
+        return null;
+    }
+    
+    try {
+        $stmt = $conn->prepare("SELECT * FROM tbl_account WHERE id = :user_id");
+        $stmt->bindParam(':user_id', $_SESSION['user_id']);
+        $stmt->execute();
+        
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        // Log error or handle as needed
+        return null;
+    }
+}
+
+// Get user's full name
+function getUserFullName() {
+    if (!isLoggedIn()) {
+        return 'Guest';
+    }
+    
+    return $_SESSION['first_name'] . ' ' . $_SESSION['last_name'];
+}
+
+// Update user's online status
+function updateOnlineStatus($status = true) {
+    global $conn;
+    
+    if (!isLoggedIn()) {
+        return false;
+    }
+    
+    try {
+        $stmt = $conn->prepare("UPDATE tbl_account SET is_online = :status, last_activity = NOW() WHERE id = :user_id");
+        $stmt->bindParam(':status', $status, PDO::PARAM_BOOL);
+        $stmt->bindParam(':user_id', $_SESSION['user_id']);
+        return $stmt->execute();
+    } catch (PDOException $e) {
+        // Log error or handle as needed
+        return false;
+    }
 }
 
 // Handle login page redirect if user is already logged in
@@ -174,8 +226,10 @@ if (isProtectedPage()) {
     }
 }
 
-
 function logoutUser() {
+    // Update online status to offline
+    updateOnlineStatus(false);
+
     // Clear session variables
     $_SESSION = array();
 
@@ -201,4 +255,8 @@ function logoutUser() {
     exit();
 }
 
+// Optional: Function to generate a secure remember token
+function generateRememberToken() {
+    return bin2hex(random_bytes(32)); // 64 character token
+}
 ?>

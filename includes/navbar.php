@@ -20,7 +20,7 @@
                 <i class="bi bi-person-fill"></i>
             </div>
             <div class="profile-dropdown">
-                <a href="#" class="dropdown-item">
+                <a href="update_profile.php" class="dropdown-item">
                     <i class="bi bi-person-gear"></i>
                     Update Profile
                 </a>
