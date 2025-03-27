@@ -1,7 +1,7 @@
 <?php
 //auth.php
 session_start();
-include 'includes/conn.php';
+include 'conn.php';
 
 // Define site sections that require authentication
 $protected_sections = [

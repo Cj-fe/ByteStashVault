@@ -20,3 +20,4 @@
 <script type="module" src="assets/script.js"></script>
 <script src="assets/navbar.js"></script>
 <script src="assets/password_generated.js"></script>
+<script src="assets/profile_page.js"></script>
