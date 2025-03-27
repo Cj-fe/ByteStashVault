@@ -102,7 +102,7 @@
                         <button class="clear-history" id="clearHistory">
                             <i class="bi bi-trash"></i> Clear History
                         </button>
-                   N </div>
+                 </div>
                     <ul class="password-history-list" id="passwordHistoryList">
                         <!-- Dynamic content will be inserted here -->
                     </ul>

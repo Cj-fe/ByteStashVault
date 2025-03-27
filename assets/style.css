@@ -19,7 +19,15 @@
   --warning: #ed8936;
   --transition-duration: 0.3s;
 }
-
+.dark-mode {
+  --primary: #5a67d8;
+  --primary-dark: #4c51bf;
+  --secondary: #6b46c1;
+  --light-bg: #1a202c;
+  --border: #2d3748;
+  --text: #f7fafc;
+  --text-muted: #a0aec0;
+}
 body {
   background-color: var(--light-bg);
   color: var(--text);
@@ -601,7 +609,7 @@ main {
 .card-actions-dropdown {
   display: none;
   position: absolute;
-  top: 40px;
+  top: auto;
   right: 15px;
   background-color: white;
   border-radius: 8px;
@@ -624,8 +632,7 @@ main {
   transition: background-color 0.2s;
   cursor: pointer;
 }
-
-.card-dropdown-action:hover {
+.password-card .card-dropdown-action:hover {
   background-color: var(--light-bg);
 }
 
@@ -853,7 +860,8 @@ footer {
   border-radius: 0;
 }
 
-.save-button, .save-profile {
+.save-button,
+.save-profile {
   padding: 5px 16px;
   border: none;
   background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
@@ -1409,9 +1417,9 @@ footer {
 }
 
 .user-name {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 700;
-  font-size: 1.50rem;
+  font-size: 1.5rem;
   color: var(--text);
   margin: 1rem 0;
   text-align: center;
@@ -1456,6 +1464,108 @@ footer {
 .upload-btn:hover {
   background-color: var(--primary);
   color: white;
+}
+
+/*============== Settings Page Styles Start Here ==============*/
+
+.settings-section {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.settings-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+
+.section-title i {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.setting-item:last-child {
+  border-bottom: none;
+}
+
+.setting-info h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: var(--text);
+}
+
+.setting-info p {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Toggle Switch Styles */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--primary);
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+input:disabled + .slider {
+  background-color: var(--border);
+  cursor: not-allowed;
 }
 
 /*============== Media Queries Start Here ==============*/
@@ -1701,6 +1811,20 @@ footer {
     bottom: 8px;
     right: 8px;
   }
+
+  .settings-container {
+    padding: 15px;
+  }
+
+  .setting-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .toggle-switch {
+    margin-top: 10px;
+    align-self: flex-end;
+  }
 }
 
 @media (max-width: 576px) {
@@ -1811,7 +1935,7 @@ footer {
   }
 
   .cancel-button,
-  .save-button, 
+  .save-button,
   .save-profile {
     padding: 5px 16px;
     font-size: 16px;
@@ -1882,5 +2006,9 @@ footer {
 
   .user-name {
     font-size: 1.1rem;
+  }
+  .card-actions-dropdown {
+    right: 40px;
+    z-index: 2000;
   }
 }
