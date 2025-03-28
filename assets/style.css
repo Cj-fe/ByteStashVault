@@ -54,6 +54,19 @@ body {
   display: none;
 }
 
+/*============== notifyjs style Start Here ==============*/
+
+.notifyjs-bootstrap-base, 
+.notifyjs-bootstrap-error {
+    word-wrap: break-word;
+    white-space: normal;
+    max-width: 90vw !important; /* Adjust width for mobile screens */
+    overflow-wrap: break-word;
+}
+
+/*============== notifyjs style End Here ==============*/
+
+
 /*============== Header Start Here ==============*/
 header {
   background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
@@ -1668,7 +1681,11 @@ input:disabled + .slider {
   .container {
     grid-template-columns: 1fr;
   }
-
+  .notifyjs-bootstrap-base, 
+  .notifyjs-bootstrap-error {
+      max-width: 90vw !important; /* Prevent overflow */
+     
+  }
   .sidebar {
     display: block;
     position: fixed;
@@ -1817,10 +1834,22 @@ input:disabled + .slider {
   }
 
   .setting-item {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
-
+  .setting-info {
+    flex: 1;
+    margin-right: 10px;
+  }
+  label.toggle-switch {
+    margin-left: auto;
+  }
+  .setting-info p {
+    display: block;
+    font-size: 12px; /* You may adjust the font size if needed */
+    margin: 5px 0 0 0;
+  }
   .toggle-switch {
     margin-top: 10px;
     align-self: flex-end;
