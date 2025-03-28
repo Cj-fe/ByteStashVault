@@ -17,23 +17,51 @@ if (!$userId) {
     exit();
 }
 
-// Prepare the update data
-$updateData = [
-    'two_factor_enabled' => isset($_POST['two_factor']) ? 1 : 0,
-    'login_notifications' => isset($_POST['login_notifications']) ? 1 : 0,
-    'password_change_required' => isset($_POST['password_change_required']) ? 1 : 0,
-    'show_profile_picture' => isset($_POST['show_profile_picture']) ? 1 : 0,
-    'show_activity_status' => isset($_POST['show_activity_status']) ? 1 : 0,
-    'email_notifications' => isset($_POST['email_notifications']) ? 1 : 0,
-    'push_notifications' => isset($_POST['push_notifications']) ? 1 : 0,
-    'password_expiry_alerts' => isset($_POST['password_expiry_alerts']) ? 1 : 0,
-    'auto_lock' => isset($_POST['auto_lock']) ? 1 : 0,
-    'clipboard_clear' => isset($_POST['clipboard_clear']) ? 1 : 0,
-    'dark_mode' => isset($_POST['dark_mode']) ? 1 : 0,
-    'updated_at' => date('Y-m-d H:i:s')
-];
+// Get the confirmed password from the form
+$confirmedPassword = $_POST['confirmed_setting_password'] ?? null;
+
+// Validate that confirmed password is provided
+if (empty($confirmedPassword)) {
+    http_response_code(400);
+    echo json_encode([
+        'success' => false, 
+        'message' => 'Please enter your current password to confirm settings changes.'
+    ]);
+    exit();
+}
 
 try {
+    // Fetch user's current password hash from tbl_account
+    $stmt = $conn->prepare("SELECT password FROM tbl_account WHERE id = ?");
+    $stmt->execute([$userId]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Verify password
+    if (!$user || !password_verify($confirmedPassword, $user['password'])) {
+        http_response_code(401);
+        echo json_encode([
+            'success' => false, 
+            'message' => 'Incorrect password. Unable to save settings.'
+        ]);
+        exit();
+    }
+
+    // Prepare the update data
+    $updateData = [
+        'two_factor_enabled' => isset($_POST['two_factor']) ? 1 : 0,
+        'login_notifications' => isset($_POST['login_notifications']) ? 1 : 0,
+        'password_change_required' => isset($_POST['password_change_required']) ? 1 : 0,
+        'show_profile_picture' => isset($_POST['show_profile_picture']) ? 1 : 0,
+        'show_activity_status' => isset($_POST['show_activity_status']) ? 1 : 0,
+        'email_notifications' => isset($_POST['email_notifications']) ? 1 : 0,
+        'push_notifications' => isset($_POST['push_notifications']) ? 1 : 0,
+        'password_expiry_alerts' => isset($_POST['password_expiry_alerts']) ? 1 : 0,
+        'auto_lock' => isset($_POST['auto_lock']) ? 1 : 0,
+        'clipboard_clear' => isset($_POST['clipboard_clear']) ? 1 : 0,
+        'dark_mode' => isset($_POST['dark_mode']) ? 1 : 0,
+        'updated_at' => date('Y-m-d H:i:s')
+    ];
+
     // Check if settings exist for this user
     $checkStmt = $conn->prepare("SELECT id FROM tbl_settings WHERE id = ?");
     $checkStmt->execute([$userId]);

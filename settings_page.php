@@ -213,7 +213,28 @@ $settings = array_merge($defaultSettings, $settings);
                             </div>
                         </div>
 
-                        
+                        <!-- Confirmed Settings Password Section -->
+                        <div class="settings-section confirmed-password-section">
+                            <h3 class="section-title">
+                                <i class="bi bi-lock"></i>
+                                Confirm Settings Changes
+                            </h3>
+                            
+                            <div class="setting-item form form-group">
+                                <div class="setting-info">
+                                    <h4>Confirm Password</h4>
+                                    <p>Enter your current password to save changes</p>
+                                </div>
+                                <input 
+                                    type="password" 
+                                    name="confirmed_setting_password" 
+                                    id="confirmed_setting_password" 
+                                    placeholder="Enter your current password" 
+                                    required
+                                    style="width: 50%;"
+                                >
+                            </div>
+                        </div>
 
                         <div class="form-actions">
                             <button type="button" class="cancel-button" onclick="window.history.back()">Cancel</button>
