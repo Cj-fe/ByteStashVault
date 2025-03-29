@@ -1,6 +1,6 @@
 
 <?php
-require_once 'conn.php';
+require_once 'auth.php';
 
 try {
     // Modified SQL query to include favorite status

@@ -1,6 +1,6 @@
 <!-- update_profile.php -->
-<?php require_once 'includes/auth.php'; ?>
-<?php require_once 'includes/conn.php'; ?>
+<?php require_once 'includes/auth.php'; require_once 'includes/get_setting.php'; ?>
+
 
 <?php
 // Fetch current user data
@@ -28,7 +28,7 @@ if (!$user) {
 
 </head>
 
-<body>
+<body class="<?php echo $settings['dark_mode'] ? 'dark-mode' : ''; ?>">
     <div id="loading">
         <div id="lottie-animation" style="width:300px; height:300px;"></div>
     </div>
@@ -105,7 +105,7 @@ if (!$user) {
                                         <label for="newPassword">New Password</label>
                                         <div class="password-input-container">
                                             <input type="password" id="newPassword" name="new_password">
-                                            <button type="button" class="toggle-new-password">
+                                            <button type="button" class="toggle-password">
                                                 <i class="bi bi-eye"></i>
                                             </button>
                                         </div>
@@ -115,7 +115,7 @@ if (!$user) {
                                         <label for="confirmPassword">Confirm New Password</label>
                                         <div class="password-input-container">
                                             <input type="password" id="confirmPassword" name="confirm_password">
-                                            <button type="button" class="toggle-new-password">
+                                            <button type="button" class="toggle-password">
                                                 <i class="bi bi-eye"></i>
                                             </button>
                                         </div>
@@ -124,7 +124,7 @@ if (!$user) {
                                         <label for="currentPassword">Current Password</label>
                                         <div class="password-input-container">
                                             <input type="password" id="currentPassword" name="current_password">
-                                            <button type="button" class="toggle-new-password">
+                                            <button type="button" class="toggle-password">
                                                 <i class="bi bi-eye"></i>
                                             </button>
                                         </div>

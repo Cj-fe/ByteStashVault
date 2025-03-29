@@ -1,6 +1,6 @@
 
 <?php
-require_once 'conn.php';
+require_once 'auth.php';
 
 try {
     if (isset($_GET['folder_id'])) {

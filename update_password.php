@@ -1,6 +1,5 @@
 <?php
-include 'includes/conn.php';
-
+require_once 'includes/auth.php';
 header('Content-Type: application/json');
 
 $response = [

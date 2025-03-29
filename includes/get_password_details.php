@@ -1,6 +1,6 @@
 <?php
 // get_password_details.php
-require_once 'conn.php';
+require_once 'auth.php';
 
 // Check if the ID parameter is set
 if (!isset($_GET['id']) || empty($_GET['id'])) {

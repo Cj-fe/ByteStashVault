@@ -1,6 +1,6 @@
 <?php
-require_once 'includes/auth.php';
-require_once 'includes/conn.php';
+require_once 'includes/auth.php'; 
+require_once 'includes/get_setting.php';
 
 // Check if id (folder_id) is set in the URL query parameter
 $folder_id = isset($_GET['id']) ? $_GET['id'] : null;
@@ -21,7 +21,7 @@ if ($folder_id === null) {
     <link rel="stylesheet" href="assets/style.css">
 </head>
 
-<body>
+<body class="<?php echo $settings['dark_mode'] ? 'dark-mode' : ''; ?>">
 <div id="loading">
         <div id="lottie-animation" style="width:300px; height:300px;"></div>
     </div>

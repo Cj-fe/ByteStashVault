@@ -1,5 +1,5 @@
-<?php require_once 'includes/auth.php'; ?>
-<?php require_once 'includes/conn.php'; ?>
+<?php require_once 'includes/auth.php'; require_once 'includes/get_setting.php'; ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +14,7 @@
     
 </head>
 
-<body>
+<body class="<?php echo $settings['dark_mode'] ? 'dark-mode' : ''; ?>">
     <div id="loading">
         <div id="lottie-animation" style="width:300px; height:300px;"></div>
     </div>

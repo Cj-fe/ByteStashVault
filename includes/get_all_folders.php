@@ -1,6 +1,6 @@
 
 <?php
-require_once 'conn.php';
+require_once 'auth.php';
 
 try {
     $sql = "SELECT folder_id, folder_name FROM tbl_folder";

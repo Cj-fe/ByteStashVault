@@ -1,5 +1,5 @@
 <?php
-require_once 'conn.php'; // Include the database connection
+require_once 'auth.php'; // Include the database connection
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $newOption = isset($_POST['option']) ? (int)$_POST['option'] : null;

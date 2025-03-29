@@ -167,6 +167,6 @@
   .dark-mode .empty-history {
     color: var(--text-muted);
   }
-  .dark-mode #toggleIconInput {
+  .dark-mode #toggleIconInput, #toggleEditIconInput {
     color: var(--text);
   }

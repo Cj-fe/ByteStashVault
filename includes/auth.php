@@ -181,12 +181,24 @@ if (basename($_SERVER['PHP_SELF']) === 'index.php' || basename($_SERVER['PHP_SEL
 }
 
 // Handle protected pages - redirect to login if not authenticated
+// Handle protected pages - redirect to login if not authenticated
 if (isProtectedPage()) {
     if (!isLoggedIn()) {
         // Save the requested URL for redirection after login
         $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
         $_SESSION['error'] = "Please log in to access this page";
-        header('Location: index.php');
+        
+        // Determine correct path for index.php based on current location
+        $current_path = $_SERVER['PHP_SELF'];
+        
+        // Check if the file is in the includes directory or another subfolder
+        if (strpos($current_path, '/includes/') !== false || 
+            strpos($current_path, '/admin/') !== false || 
+            strpos($current_path, '/folder/') !== false) {
+            header('Location: ../index.php');
+        } else {
+            header('Location: index.php');
+        }
         exit();
     }
     

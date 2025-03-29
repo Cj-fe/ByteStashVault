@@ -1,32 +1,6 @@
 <?php 
 require_once 'includes/auth.php';
-
-// Get current user settings
-$userId = $_SESSION['user_id'] ?? null;
-$settings = [];
-
-if ($userId) {
-    $stmt = $conn->prepare("SELECT * FROM tbl_settings WHERE id = ?");
-    $stmt->execute([$userId]);
-    $settings = $stmt->fetch(PDO::FETCH_ASSOC) ?: [];
-}
-
-// Set default values if no settings exist
-$defaultSettings = [
-    'two_factor_enabled' => 0,
-    'login_notifications' => 1,
-    'password_change_required' => 1,
-    'show_profile_picture' => 1,
-    'show_activity_status' => 1,
-    'email_notifications' => 1,
-    'push_notifications' => 1,
-    'password_expiry_alerts' => 1,
-    'auto_lock' => 1,
-    'clipboard_clear' => 1,
-    'dark_mode' => 0
-];
-
-$settings = array_merge($defaultSettings, $settings);
+require_once 'includes/get_setting.php';
 ?>
 
 <!DOCTYPE html>
@@ -38,6 +12,7 @@ $settings = array_merge($defaultSettings, $settings);
     <?php include 'includes/header.php'; ?>
     <link rel="stylesheet" href="assets/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <script src="assets/js/darkmode.js"></script>
 </head>
 
 <body>
@@ -249,72 +224,6 @@ $settings = array_merge($defaultSettings, $settings);
     <?php include 'partials/modal.php'; ?>
     <?php include 'partials/footer.php'; ?>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Dark mode toggle handler
-            const darkModeToggle = document.querySelector('input[name="dark_mode"]');
-            if (darkModeToggle) {
-                darkModeToggle.addEventListener('change', function() {
-                    document.documentElement.classList.toggle('dark-mode', this.checked);
-                });
-            }
-            
-            // Handle form submission with fetch
-            const form = document.getElementById('settingsForm');
-            if (form) {
-                form.addEventListener('submit', async function(e) {
-                    e.preventDefault();
-                    
-                    const formData = new FormData(form);
-                    const submitButton = form.querySelector('.save-profile');
-                    const buttonText = submitButton.querySelector('.button-text');
-                    const spinner = submitButton.querySelector('.spinner-border');
-                    
-                    try {
-                        // Show loading state
-                        submitButton.disabled = true;
-                        buttonText.textContent = 'Saving...';
-                        spinner.classList.remove('d-none');
-                        
-                        const response = await fetch(form.action, {
-                            method: 'POST',
-                            body: formData
-                        });
-                        
-                        const result = await response.json();
-                        
-                        if (result.success) {
-                            // Show success notification
-                            $.notify(result.message || 'Settings saved successfully', {
-                                className: 'success',
-                                position: 'top right'
-                            });
-                            
-                            // Update dark mode immediately if changed
-                            if (formData.get('dark_mode') === 'on') {
-                                document.documentElement.classList.add('dark-mode');
-                            } else {
-                                document.documentElement.classList.remove('dark-mode');
-                            }
-                        } else {
-                            throw new Error(result.message || 'Failed to save settings');
-                        }
-                    } catch (error) {
-                        // Show error notification
-                        $.notify(error.message, {
-                            className: 'error',
-                            position: 'top right'
-                        });
-                        console.error('Error:', error);
-                    } finally {
-                        // Restore button state
-                        submitButton.disabled = false;
-                        buttonText.textContent = 'Save Settings';
-                        spinner.classList.add('d-none');
-                    }
-                });
-            }
-        });
-    </script>
+
 </body>
 </html>

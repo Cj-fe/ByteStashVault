@@ -1,8 +1,8 @@
-<?php require_once 'includes/auth.php'; ?>
-<?php require_once 'includes/conn.php'; ?>
+
+<?php require_once 'includes/auth.php'; require_once 'includes/get_setting.php';?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="<?php echo $settings['dark_mode'] ? 'dark-mode' : ''; ?>">
 
 <head>
     <meta charset="UTF-8">

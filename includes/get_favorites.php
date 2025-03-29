@@ -1,6 +1,6 @@
 
 <?php
-  require_once 'conn.php';
+  require_once 'auth.php';
   
   try {
       $sql = "SELECT p.* FROM tbl_favorites f 
