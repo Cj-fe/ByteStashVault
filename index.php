@@ -1,4 +1,5 @@
-<?php require_once 'includes/auth.php'; ?>
+<!-- index.php -->
+<?php require_once 'includes/auth.php';  require_once 'includes/get_setting.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SecureVault - Password Manager</title>
     <link rel="stylesheet" href="assets/login.css">
+    <link rel="stylesheet" href="assets/login_dark.css">
+  
 </head>
-<body>
+<body class="<?php echo $settings['dark_mode'] ? 'dark-mode' : ''; ?>">
     <div class="container">
         <div class="logo">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

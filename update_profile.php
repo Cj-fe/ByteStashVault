@@ -1,5 +1,7 @@
 <!-- update_profile.php -->
-<?php require_once 'includes/auth.php'; require_once 'includes/get_setting.php'; ?>
+<?php 
+require_once 'includes/auth.php';
+require_once 'includes/get_setting.php'; ?>
 
 
 <?php
@@ -29,9 +31,10 @@ if (!$user) {
 </head>
 
 <body class="<?php echo $settings['dark_mode'] ? 'dark-mode' : ''; ?>">
-    <div id="loading">
-        <div id="lottie-animation" style="width:300px; height:300px;"></div>
-    </div>
+
+    <?php include 'includes/loading.php'; ?>
+
+
     <?php include 'includes/navbar.php'; ?>
 
     <main>
@@ -44,8 +47,8 @@ if (!$user) {
                 </div>
 
                 <div class="profile-update-container">
-                    <form id="updateProfileForm" class="profile-form" method="POST" action="includes/update_profile_process.php"
-                        enctype="multipart/form-data">
+                    <form id="updateProfileForm" class="profile-form" method="POST"
+                        action="includes/update_profile_process.php" enctype="multipart/form-data">
                         <div class="profile-section">
                             <div class="profile-avatar">
                                 <div class="avatar-preview">
@@ -70,72 +73,72 @@ if (!$user) {
                                 </div>
                             </div>
                             <div class="form-section">
-                                    <div class="form-group">
-                                        <label for="firstName">First Name</label>
-                                        <input type="text" id="firstName" name="first_name"
-                                            value="<?php echo htmlspecialchars($user['first_name'] ?? ''); ?>" required>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" id="firstName" name="first_name"
+                                        value="<?php echo htmlspecialchars($user['first_name'] ?? ''); ?>" required>
+                                </div>
 
-                                    <div class="form-group">
-                                        <label for="lastName">Last Name</label>
-                                        <input type="text" id="lastName" name="last_name"
-                                            value="<?php echo htmlspecialchars($user['last_name'] ?? ''); ?>" required>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="lastName">Last Name</label>
+                                    <input type="text" id="lastName" name="last_name"
+                                        value="<?php echo htmlspecialchars($user['last_name'] ?? ''); ?>" required>
+                                </div>
 
-                                    <div class="form-group">
-                                        <label for="email">Email Address</label>
-                                        <input type="email" id="email" name="email"
-                                            value="<?php echo htmlspecialchars($user['email'] ?? ''); ?>" required>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" name="email"
+                                        value="<?php echo htmlspecialchars($user['email'] ?? ''); ?>" required>
+                                </div>
 
-                                    <div class="form-group">
-                                        <label for="phone">Phone Number</label>
-                                        <input type="tel" id="phone" name="phone"
-                                            value="<?php echo htmlspecialchars($user['phone'] ?? ''); ?>">
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" id="phone" name="phone"
+                                        value="<?php echo htmlspecialchars($user['phone'] ?? ''); ?>">
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h3>Change Password</h3>
+                                <p class="section-description">Leave blank to keep your current password</p>
+
+
+
+                                <div class="form-group">
+                                    <label for="newPassword">New Password</label>
+                                    <div class="password-input-container">
+                                        <input type="password" id="newPassword" name="new_password">
+                                        <button type="button" class="toggle-password">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
                                     </div>
                                 </div>
 
-                                <div class="form-section">
-                                    <h3>Change Password</h3>
-                                    <p class="section-description">Leave blank to keep your current password</p>
-
-                                   
-
-                                    <div class="form-group">
-                                        <label for="newPassword">New Password</label>
-                                        <div class="password-input-container">
-                                            <input type="password" id="newPassword" name="new_password">
-                                            <button type="button" class="toggle-password">
-                                                <i class="bi bi-eye"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="confirmPassword">Confirm New Password</label>
-                                        <div class="password-input-container">
-                                            <input type="password" id="confirmPassword" name="confirm_password">
-                                            <button type="button" class="toggle-password">
-                                                <i class="bi bi-eye"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="currentPassword">Current Password</label>
-                                        <div class="password-input-container">
-                                            <input type="password" id="currentPassword" name="current_password">
-                                            <button type="button" class="toggle-password">
-                                                <i class="bi bi-eye"></i>
-                                            </button>
-                                        </div>
+                                <div class="form-group">
+                                    <label for="confirmPassword">Confirm New Password</label>
+                                    <div class="password-input-container">
+                                        <input type="password" id="confirmPassword" name="confirm_password">
+                                        <button type="button" class="toggle-password">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
                                     </div>
                                 </div>
-
-                                <div class="form-actions">
-                                    <button type="button" class="cancel-button"
-                                        onclick="window.history.back()">Cancel</button>
-                                    <button type="submit" class="save-profile">Save Changes</button>
+                                <div class="form-group">
+                                    <label for="currentPassword">Current Password</label>
+                                    <div class="password-input-container">
+                                        <input type="password" id="currentPassword" name="current_password">
+                                        <button type="button" class="toggle-password">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                    </div>
                                 </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="cancel-button"
+                                    onclick="window.history.back()">Cancel</button>
+                                <button type="submit" class="save-profile">Save Changes</button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -149,4 +152,3 @@ if (!$user) {
 </body>
 
 </html>
-

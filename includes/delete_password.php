@@ -1,6 +1,6 @@
 
 <?php
-  include 'auth.php';
+require_once 'auth.php';
 
   header('Content-Type: application/json');
 

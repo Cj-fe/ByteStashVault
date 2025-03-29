@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    initializeLottieAnimation('lottie-animation', 'assets/json/loading.json');
+    const lottieElement = document.getElementById('lottie-animation');
+    const animationPath = lottieElement.getAttribute('data-animation-path');
+    
+    initializeLottieAnimation('lottie-animation', animationPath);
 
     const container = document.querySelector('.content');
     const passwordGrid = document.querySelector('.password-grid');
@@ -74,5 +77,3 @@ document.addEventListener('DOMContentLoaded', () => {
     showLoadingScreen();
     checkForEmptyPasswordLists();
 });
-
-

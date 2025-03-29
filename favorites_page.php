@@ -1,4 +1,6 @@
-<?php require_once 'includes/auth.php'; require_once 'includes/get_setting.php'; ?>
+<?php 
+require_once 'includes/auth.php';
+require_once 'includes/get_setting.php'; ?>
 
 
 <!DOCTYPE html>
@@ -14,13 +16,14 @@
 </head>
 
 <body class="<?php echo $settings['dark_mode'] ? 'dark-mode' : ''; ?>">
- <div id="loading">
-        <div id="lottie-animation" style="width:300px; height:300px;"></div>
-    </div>
+
+    <?php include 'includes/loading.php'; ?>
+
     <?php include 'includes/navbar.php'; ?>
 
     <main>
         <div class="container">
+
 
             <?php include 'includes/aside.php'; ?>
 

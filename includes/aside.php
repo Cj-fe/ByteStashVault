@@ -1,6 +1,5 @@
 <?php
-// Start session or necessary setup
-
+require_once 'auth.php';
 // Determine the current script name without extension
 $currentFile = basename($_SERVER['PHP_SELF'], '.php');
 

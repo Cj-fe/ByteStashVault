@@ -1,4 +1,5 @@
-<?php require_once 'includes/auth.php'; require_once 'includes/get_setting.php'; ?>
+<?php require_once 'includes/auth.php';
+require_once 'includes/get_setting.php'; ?>
 
 
 <!DOCTYPE html>
@@ -11,13 +12,13 @@
     <?php include 'includes/header.php'; ?>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/style.css">
-    
+
 </head>
 
 <body class="<?php echo $settings['dark_mode'] ? 'dark-mode' : ''; ?>">
-    <div id="loading">
-        <div id="lottie-animation" style="width:300px; height:300px;"></div>
-    </div>
+
+    <?php include 'includes/loading.php'; ?>
+
     <?php include 'includes/navbar.php'; ?>
 
     <main>
@@ -102,7 +103,7 @@
                         <button class="clear-history" id="clearHistory">
                             <i class="bi bi-trash"></i> Clear History
                         </button>
-                 </div>
+                    </div>
                     <ul class="password-history-list" id="passwordHistoryList">
                         <!-- Dynamic content will be inserted here -->
                     </ul>

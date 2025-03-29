@@ -1,10 +1,11 @@
-<?php 
+<?php
 require_once 'includes/auth.php';
 require_once 'includes/get_setting.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="en" class="<?php echo $settings['dark_mode'] ? 'dark-mode' : ''; ?>">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,9 +17,8 @@ require_once 'includes/get_setting.php';
 </head>
 
 <body>
-    <div id="loading">
-        <div id="lottie-animation" style="width:300px; height:300px;"></div>
-    </div>
+    <?php include 'includes/loading.php'; ?>
+
     <?php include 'includes/navbar.php'; ?>
 
     <main>
@@ -31,14 +31,15 @@ require_once 'includes/get_setting.php';
                 </div>
 
                 <div class="settings-container">
-                    <form id="settingsForm" class="settings-form" method="POST" action="includes/update_settings_process.php">
+                    <form id="settingsForm" class="settings-form" method="POST"
+                        action="includes/update_settings_process.php">
                         <!-- Security Settings Section -->
                         <div class="settings-section">
                             <h3 class="section-title">
                                 <i class="bi bi-shield-lock"></i>
                                 Security Settings
                             </h3>
-                            
+
                             <div class="setting-item">
                                 <div class="setting-info">
                                     <h4>Two-Factor Authentication</h4>
@@ -49,7 +50,7 @@ require_once 'includes/get_setting.php';
                                     <span class="slider round"></span>
                                 </label>
                             </div>
-                            
+
                             <div class="setting-item">
                                 <div class="setting-info">
                                     <h4>Login Notifications</h4>
@@ -60,7 +61,7 @@ require_once 'includes/get_setting.php';
                                     <span class="slider round"></span>
                                 </label>
                             </div>
-                            
+
                             <div class="setting-item">
                                 <div class="setting-info">
                                     <h4>Password Change Required</h4>
@@ -79,7 +80,7 @@ require_once 'includes/get_setting.php';
                                 <i class="bi bi-eye"></i>
                                 Privacy Settings
                             </h3>
-                            
+
                             <div class="setting-item">
                                 <div class="setting-info">
                                     <h4>Show Profile Picture</h4>
@@ -90,7 +91,7 @@ require_once 'includes/get_setting.php';
                                     <span class="slider round"></span>
                                 </label>
                             </div>
-                            
+
                             <div class="setting-item">
                                 <div class="setting-info">
                                     <h4>Activity Status</h4>
@@ -109,7 +110,7 @@ require_once 'includes/get_setting.php';
                                 <i class="bi bi-bell"></i>
                                 Notification Settings
                             </h3>
-                            
+
                             <div class="setting-item">
                                 <div class="setting-info">
                                     <h4>Email Notifications</h4>
@@ -120,7 +121,7 @@ require_once 'includes/get_setting.php';
                                     <span class="slider round"></span>
                                 </label>
                             </div>
-                            
+
                             <div class="setting-item">
                                 <div class="setting-info">
                                     <h4>Push Notifications</h4>
@@ -131,7 +132,7 @@ require_once 'includes/get_setting.php';
                                     <span class="slider round"></span>
                                 </label>
                             </div>
-                            
+
                             <div class="setting-item">
                                 <div class="setting-info">
                                     <h4>Password Expiry Alerts</h4>
@@ -150,7 +151,7 @@ require_once 'includes/get_setting.php';
                                 <i class="bi bi-gear"></i>
                                 Advanced Settings
                             </h3>
-                            
+
                             <div class="setting-item">
                                 <div class="setting-info">
                                     <h4>Auto-Lock After Inactivity</h4>
@@ -161,7 +162,7 @@ require_once 'includes/get_setting.php';
                                     <span class="slider round"></span>
                                 </label>
                             </div>
-                            
+
                             <div class="setting-item">
                                 <div class="setting-info">
                                     <h4>Clipboard Clear</h4>
@@ -172,7 +173,7 @@ require_once 'includes/get_setting.php';
                                     <span class="slider round"></span>
                                 </label>
                             </div>
-                            
+
                             <div class="setting-item">
                                 <div class="setting-info">
                                     <h4>Dark Mode</h4>
@@ -191,20 +192,14 @@ require_once 'includes/get_setting.php';
                                 <i class="bi bi-lock"></i>
                                 Confirm Settings Changes
                             </h3>
-                            
+
                             <div class="setting-item form form-group">
                                 <div class="setting-info">
                                     <h4>Confirm Password</h4>
                                     <p>Enter your current password to save changes</p>
                                 </div>
-                                <input 
-                                    type="password" 
-                                    name="confirmed_setting_password" 
-                                    id="confirmed_setting_password" 
-                                    placeholder="Enter your current password" 
-                                    required
-                                    style="width: 50%;"
-                                >
+                                <input type="password" name="confirmed_setting_password" id="confirmed_setting_password"
+                                    placeholder="Enter your current password" required style="width: 50%;">
                             </div>
                         </div>
 
@@ -212,7 +207,8 @@ require_once 'includes/get_setting.php';
                             <button type="button" class="cancel-button" onclick="window.history.back()">Cancel</button>
                             <button type="submit" class="save-profile">
                                 <span class="button-text">Save Settings</span>
-                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                <span class="spinner-border spinner-border-sm d-none" role="status"
+                                    aria-hidden="true"></span>
                             </button>
                         </div>
                     </form>
@@ -226,4 +222,5 @@ require_once 'includes/get_setting.php';
 
 
 </body>
+
 </html>

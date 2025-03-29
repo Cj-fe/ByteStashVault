@@ -1,3 +1,4 @@
+<?php require_once 'auth.php'; ?>
 <header>
     <div class="header-container">
         <button class="menu-button">

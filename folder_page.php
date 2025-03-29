@@ -1,5 +1,5 @@
 <?php
-require_once 'includes/auth.php'; 
+require_once 'includes/auth.php';
 require_once 'includes/get_setting.php';
 
 // Check if id (folder_id) is set in the URL query parameter
@@ -22,9 +22,9 @@ if ($folder_id === null) {
 </head>
 
 <body class="<?php echo $settings['dark_mode'] ? 'dark-mode' : ''; ?>">
-<div id="loading">
-        <div id="lottie-animation" style="width:300px; height:300px;"></div>
-    </div>
+
+    <?php include 'includes/loading.php'; ?>
+
     <?php include 'includes/navbar.php'; ?>
 
     <main>

@@ -1,4 +1,5 @@
 <?php
+require_once 'auth.php';
 
 try {
     // Prepare and execute the query to fetch folder IDs and names

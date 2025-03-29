@@ -15,9 +15,8 @@
 </head>
 
 <body>
-    <div id="loading">
-        <div id="lottie-animation" style="width:300px; height:300px;"></div>
-    </div>
+
+    <?php include 'includes/loading.php'; ?>
     <?php include 'includes/navbar.php'; ?>
 
     <main>
