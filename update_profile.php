@@ -105,7 +105,7 @@ if (!$user) {
                                         <label for="newPassword">New Password</label>
                                         <div class="password-input-container">
                                             <input type="password" id="newPassword" name="new_password">
-                                            <button type="button" class="toggle-password">
+                                            <button type="button" class="toggle-new-password">
                                                 <i class="bi bi-eye"></i>
                                             </button>
                                         </div>
@@ -115,7 +115,7 @@ if (!$user) {
                                         <label for="confirmPassword">Confirm New Password</label>
                                         <div class="password-input-container">
                                             <input type="password" id="confirmPassword" name="confirm_password">
-                                            <button type="button" class="toggle-password">
+                                            <button type="button" class="toggle-new-password">
                                                 <i class="bi bi-eye"></i>
                                             </button>
                                         </div>
@@ -124,7 +124,7 @@ if (!$user) {
                                         <label for="currentPassword">Current Password</label>
                                         <div class="password-input-container">
                                             <input type="password" id="currentPassword" name="current_password">
-                                            <button type="button" class="toggle-password">
+                                            <button type="button" class="toggle-new-password">
                                                 <i class="bi bi-eye"></i>
                                             </button>
                                         </div>

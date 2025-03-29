@@ -17,11 +17,12 @@
                     <label for="username">Username / Email / Number / Any</label>
                     <input type="text" id="username" name="username" placeholder="Enter username or email" required>
                 </div>
+                <!-- HTML Structure -->
                 <div class="form-group">
                     <label for="password">Password*</label>
                     <div class="password-input-container">
-                        <input type="password" id="password" name="password" placeholder="Enter password" required>
-                        <button type="button" class="toggle-password">
+                        <input type="password" id="add-password" name="password" placeholder="Enter password" required>
+                        <button type="button" id="add-toggle-password" class="toggle-password">
                             <i class="bi bi-eye"></i>
                         </button>
                     </div>
@@ -87,7 +88,9 @@
                     <div class="password-input-container">
                         <input type="password" id="editPassword" name="editPassword" placeholder="Enter password"
                             required>
-                      
+                        <button type="button" id="edit-toggle-password" class="toggle-password">
+                            <i class="bi bi-eye"></i>
+                        </button>
                     </div>
                 </div>
                 <div class="form-group">
@@ -170,7 +173,7 @@
                     <label for="folderName">Folder Name</label>
                     <input type="text" id="folderName" name="folderName" placeholder="Enter folder name" required>
                 </div>
-                <div class="modal-footer"  style="padding: 10px 0px; !important">
+                <div class="modal-footer" style="padding: 10px 0px; !important">
                     <button type="button" class="cancel-button" id="cancelFolderBtn">Cancel</button>
                     <button type="submit" class="save-button">Save</button>
                 </div>
@@ -196,7 +199,7 @@
                         required>
                     <input type="hidden" id="editFolderId" name="editFolderId">
                 </div>
-                <div class="modal-footer"  style="padding: 10px 0px; !important">
+                <div class="modal-footer" style="padding: 10px 0px; !important">
                     <button type="button" class="cancel-button" id="cancelEditFolderBtn">Cancel</button>
                     <button type="submit" class="save-button">Update</button>
                 </div>
@@ -217,7 +220,7 @@
         <div class="modal-body">
             <p>Are you sure you want to delete this folder?</p>
             <p class="folder-name-display" id="deleteFolderName"></p>
-           
+
             <form id="deleteFolderForm" method="POST">
                 <input type="hidden" id="deleteFolderId" name="deleteFolderId">
                 <br>

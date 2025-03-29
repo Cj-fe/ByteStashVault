@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-   
+
     // New functionality: Close dropdowns on screen resize
     window.addEventListener('resize', function () {
         document.querySelectorAll('.card-actions-dropdown.active').forEach(dropdown => {
@@ -120,20 +120,46 @@ document.addEventListener('DOMContentLoaded', function () {
     /*============ Toggle Collapsible Content End Here ============*/
 
     /*============ Toggle Password Visibility Start Here ============*/
-    const togglePassword = document.querySelector('.toggle-password');
-    const passwordInput = document.getElementById('password');
+    (function () {
+        document.addEventListener('DOMContentLoaded', function () {
+            const togglePassword = document.getElementById('add-toggle-password');
+            const passwordInput = document.getElementById('add-password');
 
-    togglePassword.addEventListener('click', function () {
-        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-        passwordInput.setAttribute('type', type);
+            togglePassword.addEventListener('click', function () {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
 
-        const icon = togglePassword.querySelector('i');
-        icon.classList.toggle('bi-eye');
-        icon.classList.toggle('bi-eye-slash');
-    });
+                const icon = togglePassword.querySelector('i');
+                icon.classList.toggle('bi-eye');
+                icon.classList.toggle('bi-eye-slash');
+            });
+        });
+    })();
+    (function () {
+        document.addEventListener('DOMContentLoaded', function () {
+            // Function to setup password toggle
+            function setupPasswordToggle(toggleButtonId, passwordInputId) {
+                const toggleButton = document.getElementById(toggleButtonId);
+                const passwordInput = document.getElementById(passwordInputId);
+    
+                toggleButton.addEventListener('click', function () {
+                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passwordInput.setAttribute('type', type);
+    
+                    const icon = toggleButton.querySelector('i');
+                    icon.classList.toggle('bi-eye');
+                    icon.classList.toggle('bi-eye-slash');
+                });
+            }
+    
+            // Initialize toggle functionality for each password field
+            setupPasswordToggle('unique-toggle-password', 'unique-password');
+            setupPasswordToggle('edit-toggle-password', 'editPassword');
+        });
+    })();
     /*============ Toggle Password Visibility End Here ============*/
 
-    
+
 
     /*============ Toggle Icon Input Start Here ============*/
     document.getElementById('toggleIconInput').addEventListener('click', function (event) {
@@ -389,7 +415,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Also update the corresponding action button icon
                 const actionButtonIcon = this.closest('.password-card, .password-list-item')
-                                            .querySelector('.action-btn[title="Add to favorites"] i');
+                    .querySelector('.action-btn[title="Add to favorites"] i');
                 if (iconElement.classList.contains('bi-star-fill')) {
                     actionButtonIcon.classList.remove('bi-star');
                     actionButtonIcon.classList.add('bi-star-fill');
@@ -716,7 +742,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
         `;
         return card;
-    }   
+    }
 
     function createPasswordListItem(row) {
         const listItem = document.createElement('div');
@@ -763,18 +789,18 @@ document.addEventListener('DOMContentLoaded', function () {
         const isGridView = passwordGrid.style.display === 'grid';
         const itemsPerPage = isGridView ? itemsPerPageGrid : itemsPerPageList;
         const items = isGridView ? passwordGrid.children : passwordList.children;
-    
+
         totalItems = items.length;
         totalPages = Math.ceil(totalItems / itemsPerPage);
-    
+
         // Hide all items
         Array.from(items).forEach(item => item.style.display = 'none');
-    
+
         // Show items for the current page
         const start = (currentPage - 1) * itemsPerPage;
         const end = start + itemsPerPage;
         Array.from(items).slice(start, end).forEach(item => item.style.display = '');
-    
+
         // Show or hide pagination controls based on total item count
         const paginationControls = document.querySelector('.pagination-controls');
         if (totalItems > 5) {
@@ -782,7 +808,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             paginationControls.classList.add('hidden');
         }
-        
+
         if (totalItems <= itemsPerPage) {
             paginationControls.style.display = 'none'; // previous logic for items within a single page
         } else {
@@ -792,7 +818,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelector('.next-page').disabled = currentPage === totalPages;
         }
     }
-    
+
 
     function setupPaginationControls() {
         const paginationContainer = document.createElement('div');

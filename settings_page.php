@@ -38,9 +38,6 @@ $settings = array_merge($defaultSettings, $settings);
     <?php include 'includes/header.php'; ?>
     <link rel="stylesheet" href="assets/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-    <style>
-        
-    </style>
 </head>
 
 <body>
