@@ -1,6 +1,6 @@
 <?php 
 require_once 'includes/auth.php';
-require_once 'includes/get_setting.php'; ?>
+require_once 'includes/get_admin_setting.php'; ?>
 
 
 <!DOCTYPE html>

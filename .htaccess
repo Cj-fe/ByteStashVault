@@ -1,0 +1,104 @@
+# HTID:23422420: DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES BELOW
+php_value display_errors 1
+# DO NOT REMOVE OR MODIFY THIS LINE AND THE 
+
+# Enable the rewrite engine
+RewriteEngine On
+
+# Force HTTPS (Uncomment if you have SSL)
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Set the base directory - important for proper path resolution
+RewriteBase /
+
+# If the requested URL is a directory that doesn't exist
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# And if the requested URL is not a file
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Then redirect to index.html
+RewriteRule ^(.*)$ index.html [L,QSA]
+
+# Handle all common error codes and redirect to index.html
+ErrorDocument 400 /index.html
+ErrorDocument 401 /index.html
+ErrorDocument 403 /index.html
+ErrorDocument 404 /ErrorDocument/404.php
+ErrorDocument 500 /index.html
+ErrorDocument 502 /index.html
+ErrorDocument 503 /index.html
+ErrorDocument 504 /index.html
+
+# Prevent directory listing
+Options -Indexes
+
+# Handle access to .htaccess and other sensitive files
+<FilesMatch "^\.ht">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Block access to sensitive directories 
+# Uncomment and customize if needed
+# RedirectMatch 403 ^/(\.git|\.svn|bin|includes|node_modules)/.*$
+
+# Allow direct access to specific file types even in protected directories
+<FilesMatch "\.(css|js|gif|jpg|jpeg|png|svg|ico|woff|woff2|ttf|eot|json)$">
+    Order deny,allow
+    Allow from all
+</FilesMatch>
+
+# Set the proper MIME type for JSON files (important for Lottie animations)
+AddType application/json .json
+
+# Add caching for static assets including Lottie JSON files
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Cache Lottie JSON files for 1 week
+    ExpiresByType application/json "access plus 1 week"
+    
+    # Cache other static assets
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+    # Prevent MIME type sniffing
+    Header set X-Content-Type-Options "nosniff"
+
+    # Enable XSS protection
+    Header set X-XSS-Protection "1; mode=block"
+
+    # Prevent clickjacking
+    Header set X-Frame-Options "SAMEORIGIN"
+
+    # Enable HSTS (HTTP Strict Transport Security)
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+    # Content Security Policy (CSP)
+    Header always set Content-Security-Policy "
+        default-src 'self'; 
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://code.jquery.com https://cdn.jsdelivr.net; 
+        style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; 
+        font-src 'self' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; 
+        img-src 'self' data:; 
+        connect-src 'self' https://secretmanager.ct.ws; 
+        object-src 'none'; 
+        frame-src 'none';"
+
+    # Referrer Policy
+    Header set Referrer-Policy "no-referrer-when-downgrade"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Ensure cookies are HttpOnly
+    Header always edit Set-Cookie ^(.*)$ $1;HttpOnly
+</IfModule>

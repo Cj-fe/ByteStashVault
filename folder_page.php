@@ -1,6 +1,6 @@
 <?php
 require_once 'includes/auth.php';
-require_once 'includes/get_setting.php';
+require_once 'includes/get_admin_setting.php';
 
 // Check if id (folder_id) is set in the URL query parameter
 $folder_id = isset($_GET['id']) ? $_GET['id'] : null;
